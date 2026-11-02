@@ -9,7 +9,8 @@
     1. Finds every instance of the bid desk blueprint (agent identity + agent user) and its team from its name
        (keywords in BID_TEAM_RULES, default banking / publicsector).
     2. Rebuilds BID_TEAM_RULES: the name keywords plus each current instance's agent-user and agent-identity IDs
-       (IDs of deleted instances are dropped), and saves it to the azd environment.
+       (IDs of deleted instances are dropped), and BID_COLLEAGUES (agent-user ID -> instance name, so instances
+       recognise each other's messages by object ID; doc 17), and saves both to the azd environment.
     3. Grants each instance Search Index Data Reader on its own team's index (scripts/grant-bid-team-access.ps1).
     4. Rolls out a new bid desk version with the new mapping (scripts/deploy-bid-desk-agent.ps1 -SkipPublish).
   Without -Apply it only prints the plan. Needs Owner (activate PIM in Zava) and Graph read of agent identities.
@@ -54,6 +55,7 @@ try {
 
     $rules = [ordered]@{}
     foreach ($k in $keywords.Keys) { $rules[$k] = $keywords[$k] }
+    $colleagues = [ordered]@{}
     $instances = @()
     foreach ($identity in $identities) {
         # The default instance identity is the shared container credential: never map it or give it data access.
@@ -65,10 +67,11 @@ try {
         $instances += [pscustomobject]@{ Name = $identity.displayName; Team = $team; Identity = $identity.appId; User = $user.id; Upn = $user.userPrincipalName }
         if ($team) {
             $rules[$identity.appId] = $team
-            if ($user) { $rules[$user.id] = $team }
+            if ($user) { $rules[$user.id] = $team; $colleagues[$user.id] = $identity.displayName }
         }
     }
     $rulesJson = $rules | ConvertTo-Json -Compress
+    $colleaguesJson = if ($colleagues.Count) { $colleagues | ConvertTo-Json -Compress } else { "" }
 
     Write-Host "Bid desk instances (blueprint $blueprint):"
     if (-not $instances) { Write-Host "  none yet: hire them in Teams > Apps > Agents for your team > RFP Bid Desk > Create instance." }
@@ -78,9 +81,11 @@ try {
     $pending = @($instances | Where-Object { $_.Team -and -not $_.User })
     if ($pending) { Write-Warning "No agent user yet for: $($pending.Name -join ', ') (the hire may still be provisioning). Re-run in a few minutes." }
     Write-Host "BID_TEAM_RULES -> $rulesJson"
+    Write-Host "BID_COLLEAGUES -> $colleaguesJson"
     if (-not $Apply) { Write-Host "`nPlan only. Re-run with -Apply."; return }
 
     azd env set BID_TEAM_RULES $rulesJson @envArgs | Out-Null
+    azd env set BID_COLLEAGUES $colleaguesJson @envArgs | Out-Null
     foreach ($i in $instances | Where-Object { $_.Team -and $_.User }) {
         Write-Host "===== Search access for $($i.Name) -> $($teams[$i.Team]) ====="
         & "$PSScriptRoot/grant-bid-team-access.ps1" -Instance $i.Name -Team $i.Team -Apply
@@ -89,6 +94,7 @@ try {
     if (-not $SkipDeploy) {
         Write-Host "===== New bid desk version with the updated mapping ====="
         $values["BID_TEAM_RULES"] = $rulesJson
+        $values["BID_COLLEAGUES"] = $colleaguesJson
         $saved = @{}
         foreach ($k in $values.Keys) { $saved[$k] = [Environment]::GetEnvironmentVariable($k); [Environment]::SetEnvironmentVariable($k, $values[$k]) }
         try { & "$PSScriptRoot/deploy-bid-desk-agent.ps1" -SkipPublish }

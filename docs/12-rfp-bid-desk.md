@@ -18,6 +18,7 @@ Pre-sales bid teams answer RFPs, RFIs and security questionnaires: often 300 que
 | **Teams, proactive** | Daily deadline check | A scheduler emails `[bid-desk:daily-check]` to the instance, which posts reminders for bids due within 7 days to `BID_TEAM_CHAT_NAME` (§7) |
 | **1:1 chat / Microsoft 365 Copilot** | "What did we commit on data residency to banks last year?" | Searches the library and answers with the exact wording and citations |
 | **Isolation** | Ask **PublicSectorBids** for banking answers | The search call carries PublicSectorBids' own token. **Azure AI Search returns HTTP 403** because that identity has no role on `bids-banking`. The instance says so, and `/whoami` shows the refused identity |
+| **Colleague in a meeting** | In a Teams meeting chat: "@BankingBids Q11 has no banking answer. Ask PublicSectorBids here" | BankingBids @mentions PublicSectorBids, which answers from its own library, labelled for the bid manager's approval. **Ask, don't access**: see [doc 17](17-agents-collaborating-in-meetings.md) |
 
 What it never does: submit a bid, set prices, accept contractual terms, invent certifications or figures, or read another team's library.
 
@@ -60,7 +61,7 @@ flowchart LR
 
 The past-bid libraries live in `demo/rfp/library/` and are loaded by `scripts/setup-search-indexes.ps1`. They are **not** in the container image: the container has no copy of any team's data.
 
-Code: `scenario.py` (switch, help text, `/whoami` parsing), `rfp_prompts.py`, `rfp_tools.py` (three function tools), `search_client.py` (REST, Entra bearer), `instance_tokens.py` (per-instance tokens), `token_debug.py` (inspector), `ToolingManifest.rfp.json` (scoped MCP tools).
+Code: `scenario.py` (switch, help text, `/whoami` parsing), `rfp_prompts.py`, `rfp_tools.py` (three function tools), `search_client.py` (REST, Entra bearer), `instance_tokens.py` (per-instance tokens), `token_debug.py` (inspector), `colleagues.py` (agent-to-agent collaboration, [doc 17](17-agents-collaborating-in-meetings.md)), `ToolingManifest.rfp.json` (scoped MCP tools).
 
 ## 4. Per-instance tokens: three routes to the same goal
 
@@ -169,7 +170,7 @@ Then (humans):
 
 1. **Approve** "RFP Bid Desk" in the Microsoft 365 admin center (Agents > Requests), as for FinCrime ([08](08-deployment-runbook.md) Step 4).
 2. **Hire** `BankingBids` and `PublicSectorBids` (Teams > Apps > Agents for your team > RFP Bid Desk > Create instance). Only hires made this way appear under the agent's **Instances** in the admin center. The instance name decides the default library (`banking` / `publicsector` keywords; override with `BID_TEAM_RULES`).
-3. **Wire up the hires** (developer, Owner active). Teams activities carry only an instance's IDs, not its name, and each hire gets new IDs. One script maps the current instances' agent-user and agent-identity IDs in `BID_TEAM_RULES` (dropping deleted ones), grants each instance Search Index Data Reader on **its own index only**, and rolls out a new bid desk version. Without `-Apply` it only prints the plan:
+3. **Wire up the hires** (developer, Owner active). Teams activities carry only an instance's IDs, not its name, and each hire gets new IDs. One script maps the current instances' agent-user and agent-identity IDs in `BID_TEAM_RULES` (dropping deleted ones), writes `BID_COLLEAGUES` (so instances recognise each other's messages, [doc 17](17-agents-collaborating-in-meetings.md)), grants each instance Search Index Data Reader on **its own index only**, and rolls out a new bid desk version. Without `-Apply` it only prints the plan:
    ```powershell
    pwsh ./scripts/sync-bid-desk-instances.ps1 -Apply
    ```
@@ -190,6 +191,8 @@ Cost: Azure AI Search Basic is billed per hour (about USD 75 per month; check th
 | 3 | Team chat | "@BankingBids what's still open?", then `demo/send-bid-reminder.ps1 -WithinDays 14` | It tracks the bid and nudges owners proactively |
 | 4 | Recall | 1:1 or Microsoft 365 Copilot: "What did we commit on data residency to banks last year?" | Exact wording with the source (Northwind Mutual 2025, §5.4) |
 | 5 | Isolation | Ask **PublicSectorBids**: "What did we commit on data residency to banks?" then `/whoami probe` | **Azure returned 403**: the boundary is Azure RBAC on each instance's own identity, not a prompt. The inspector shows which identity was refused |
+
+Encore: the two instances collaborating in a Teams meeting chat, with the bid manager approving the reuse, has its own 10-minute run of show in [doc 17 §7](17-agents-collaborating-in-meetings.md#7-run-of-show-10-minutes).
 
 ## 10. Roles
 

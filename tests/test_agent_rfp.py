@@ -282,3 +282,99 @@ def test_agents_channel_whoami_subject_is_honoured(make_agent, monkeypatch):
     ctx = _live_email_context(conversation={"tenantId": TENANT, "id": "c3", "topic": "/whoami"}, text="hello")
     asyncio.run(agent.process_user_message("hello", FakeAuth(), "AGENTIC", ctx))
     assert captured["function_tools"] is False and "<p>/whoami - BankingBids" in captured["input_text"]
+
+
+# --- Agent-to-agent collaboration (doc 17) ---------------------------------------------------------
+
+PUBLIC_SECTOR_OID = "77f50c53-8e33-4e19-88f2-c242a3a97db1"
+
+
+def _capture(agent, monkeypatch):
+    captured = {}
+
+    async def fake_invoke(**kwargs):
+        captured.update(kwargs)
+        return "Cross-team reuse: needs bid manager approval."
+
+    monkeypatch.setattr(agent, "_invoke_responses_api", fake_invoke)
+    return captured
+
+
+def _colleague_agent(make_agent, monkeypatch):
+    monkeypatch.setenv("BID_COLLEAGUES", json.dumps({AGENT_USER_OID: "BankingBids", PUBLIC_SECTOR_OID: "PublicSectorBids"}))
+    return make_agent()
+
+
+def test_turn_from_a_colleague_instance_gets_no_microsoft_365_tools(make_agent, monkeypatch, caplog):
+    agent = _colleague_agent(make_agent, monkeypatch)
+    captured = _capture(agent, monkeypatch)
+    ctx = context(name="PublicSectorBids")
+    ctx.activity.recipient.name = None  # meeting-chat activities carry no recipient name
+    ctx.activity.recipient.agentic_user_id = PUBLIC_SECTOR_OID
+    ctx.activity.from_property = SimpleNamespace(name="BankingBids", id=f"8:orgid:{AGENT_USER_OID}", aad_object_id=AGENT_USER_OID)
+    text = "<at>PublicSectorBids</at> Do you have an approved answer on a post-quantum cryptography roadmap?"
+    with caplog.at_level("INFO"):
+        reply = asyncio.run(agent.process_user_message(text, FakeAuth(), "AGENTIC", ctx))
+    assert f"Agent-to-agent turn: BankingBids ({AGENT_USER_OID}) -> PublicSectorBids ({PUBLIC_SECTOR_OID})" in caplog.text
+    assert reply.startswith("Cross-team reuse")
+    assert captured["mcp_enabled"] is False and captured["include_teams_mcp"] is False
+    assert captured["input_text"].startswith("[Control notice from the bid desk code")
+    assert "Message from BankingBids: <at>PublicSectorBids</at> Do you have" in captured["input_text"]
+    assert "ask, don't access" not in captured["instructions"]
+
+
+def test_colleague_turn_budget_breaks_loops(make_agent, monkeypatch):
+    monkeypatch.setenv("COLLEAGUE_MAX_TURNS", "2")
+    agent = _colleague_agent(make_agent, monkeypatch)
+    captured = _capture(agent, monkeypatch)
+    ctx = context(name="PublicSectorBids")
+    ctx.activity.recipient.agentic_user_id = PUBLIC_SECTOR_OID
+    ctx.activity.from_property = SimpleNamespace(name="BankingBids", id=f"8:orgid:{AGENT_USER_OID}", aad_object_id=AGENT_USER_OID)
+    replies = [asyncio.run(agent.process_user_message("question", FakeAuth(), "AGENTIC", ctx)) for _ in range(3)]
+    assert replies[:2] == ["Cross-team reuse: needs bid manager approval."] * 2
+    assert replies[2] == "NO_REPLY"
+    human = context(name="PublicSectorBids")
+    human.activity.recipient.agentic_user_id = PUBLIC_SECTOR_OID
+    assert asyncio.run(agent.process_user_message("hello", FakeAuth(), "AGENTIC", human)).startswith("Cross-team"), "humans are never budgeted"
+    assert captured["mcp_enabled"] is True
+
+
+def test_human_naming_a_colleague_gets_the_teams_tool_and_the_directory(make_agent, monkeypatch):
+    agent = _colleague_agent(make_agent, monkeypatch)
+    captured = _capture(agent, monkeypatch)
+    text = "<at>BankingBids</at> Q11 has no banking answer: ask PublicSectorBids here"
+    asyncio.run(agent.process_user_message(text, FakeAuth(), "AGENTIC", context()))
+    assert captured["include_teams_mcp"] is True and captured["mcp_enabled"] is True
+    assert captured["input_text"] == text
+    instructions = captured["instructions"]
+    assert "ask, don't access" in instructions
+    assert f"PublicSectorBids (Public Sector bids, Teams user ID {PUBLIC_SECTOR_OID})" in instructions
+    assert f"Teams user ID {AGENT_USER_OID}" not in instructions, "an instance never lists itself"
+    assert "chat ID conv-1" in instructions and '"chat-id": "conv-1"' in instructions
+
+
+def test_agent_name_falls_back_to_bid_colleagues_when_the_activity_has_none(make_agent, monkeypatch):
+    agent = _colleague_agent(make_agent, monkeypatch)
+    captured = _capture(agent, monkeypatch)
+    ctx = context()
+    ctx.activity.recipient.name = None  # meeting-chat activities carry no recipient name
+    asyncio.run(agent.process_user_message("ask PublicSectorBids about Q11", FakeAuth(), "AGENTIC", ctx))
+    assert "Question from BankingBids (autopilot)" in captured["instructions"]
+
+
+def test_ordinary_human_turn_is_unchanged_with_colleagues_configured(make_agent, monkeypatch):
+    agent = _colleague_agent(make_agent, monkeypatch)
+    captured = _capture(agent, monkeypatch)
+    asyncio.run(agent.process_user_message("<at>BankingBids</at> what's still open?", FakeAuth(), "AGENTIC", context()))
+    assert captured["include_teams_mcp"] is False and captured["mcp_enabled"] is True
+    assert captured["input_text"].startswith("Reply directly to the current Teams conversation.")
+
+
+def test_without_bid_colleagues_a_colleague_message_is_a_normal_turn(make_agent, monkeypatch):
+    monkeypatch.delenv("BID_COLLEAGUES", raising=False)
+    agent = make_agent()
+    captured = _capture(agent, monkeypatch)
+    ctx = context()
+    ctx.activity.from_property = SimpleNamespace(name="PublicSectorBids", id=f"8:orgid:{PUBLIC_SECTOR_OID}", aad_object_id=PUBLIC_SECTOR_OID)
+    asyncio.run(agent.process_user_message("ask PublicSectorBids", FakeAuth(), "AGENTIC", ctx))
+    assert captured["mcp_enabled"] is True and captured["include_teams_mcp"] is False

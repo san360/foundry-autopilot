@@ -37,6 +37,7 @@ from azure.identity.aio import (
     ManagedIdentityCredential,
 )
 from openai import APIStatusError, AsyncOpenAI
+from opentelemetry import trace
 
 from microsoft_agents.hosting.core import Authorization, TurnContext
 
@@ -72,8 +73,9 @@ from .instance_tokens import (
     normalize_flow,
 )
 from .prompts import CONTENT_FILTER_MESSAGE, TIPPING_OFF_NOTICE, build_instructions, is_content_filter_error
-from .rfp_prompts import COMMENT_GUIDANCE, build_rfp_instructions, is_daily_check
+from .rfp_prompts import COMMENT_GUIDANCE, build_rfp_instructions, colleague_turn_notice, is_daily_check
 from .rfp_tools import RFP_TOOL_SCHEMAS, BidContext, execute_rfp_tool, load_bid_teams, resolve_home_team
+from .colleagues import ColleagueTurnBudget, Colleague, colleague_sender, directory, load_colleagues, mentioned_colleagues
 from .scenario import SCENARIO_RFP, current_scenario, parse_whoami, parse_whoami_subject
 from .search_client import SEARCH_RESOURCE, SearchAccessDenied, SearchClient, SearchError
 from .tool_loop import FunctionExecutor, function_calls, run_responses_with_tools
@@ -160,6 +162,9 @@ class FinCrimeTriageAgent(AgentInterface):
         self._search_token_flow = normalize_flow(os.getenv("SEARCH_TOKEN_FLOW"), FLOW_AGENT_IDENTITY)
         self._bid_teams = load_bid_teams()
         self._team_chat_name = os.getenv("BID_TEAM_CHAT_NAME", "").strip() or None
+        # Agent-to-agent collaboration between hired instances (BID_COLLEAGUES, doc 17).
+        self._colleagues = load_colleagues() if self._scenario == SCENARIO_RFP else {}
+        self._colleague_budget = ColleagueTurnBudget()
 
         # FinCrime brain configuration.
         self._bank_data = load_bank_data()
@@ -178,7 +183,7 @@ class FinCrimeTriageAgent(AgentInterface):
         logger.info(
             "✅ %s autopilot ready (project_endpoint=%s, deployment=%s, "
             "mcp_servers=%d, toolbox_enabled=%s, function_tools=%d, allowed_sender_domains=%s, "
-            "search=%s, search_token_flow=%s, token_debug=%s)",
+            "search=%s, search_token_flow=%s, token_debug=%s, colleagues=%d)",
             self._scenario,
             self._project_endpoint,
             self._deployment,
@@ -189,6 +194,7 @@ class FinCrimeTriageAgent(AgentInterface):
             bool(self._search),
             self._search_token_flow,
             token_debug.enabled(),
+            len(self._colleagues),
         )
 
     def attach_connection_manager(self, connection_manager: Any) -> None:
@@ -329,6 +335,11 @@ class FinCrimeTriageAgent(AgentInterface):
                 channel="email",
             )
 
+        conversation = getattr(context.activity, "conversation", None)
+        conversation_id = getattr(conversation, "id", "") or "default"
+        mcp_enabled = True
+        colleague_dir: list[Colleague] = []
+
         # Reshape incoming email text so the model can reply through the email tool.
         # Ordinary Teams replies are returned to the host; only explicit outbound
         # messaging requests receive the Teams MCP tool.
@@ -352,21 +363,42 @@ class FinCrimeTriageAgent(AgentInterface):
                     f"If no reply is appropriate, answer exactly {NO_REPLY} and send nothing."
                 )
         elif channel_id.lower() == "msteams":
-            include_teams_mcp = self._is_outbound_teams_request(message)
-            if not include_teams_mcp:
-                message = (
-                    "Reply directly to the current Teams conversation. Do not use "
-                    f"the Teams MCP tool.\nUser message: {message}"
-                )
+            colleague = self._colleague_sender(context)
+            if colleague is not None:
+                # Sent by another hired instance: answer once from our own library, with no
+                # Microsoft 365 tools, so this turn can't @mention anyone (loop breaker).
+                if not self._colleague_budget.allow(conversation_id):
+                    logger.warning(
+                        "Agent-to-agent budget reached in %s: ignoring %s", conversation_id, colleague.name
+                    )
+                    return NO_REPLY
+                self._log_colleague_turn(colleague, turn, conversation_id)
+                include_teams_mcp = False
+                mcp_enabled = False
+                message = colleague_turn_notice(colleague.name) + message
+            else:
+                colleague_dir = self._colleague_directory(turn)
+                colleague_ask = mentioned_colleagues(message, colleague_dir)
+                include_teams_mcp = self._is_outbound_teams_request(message) or bool(colleague_ask)
+                if not include_teams_mcp:
+                    message = (
+                        "Reply directly to the current Teams conversation. Do not use "
+                        f"the Teams MCP tool.\nUser message: {message}"
+                    )
 
         if self._scenario != SCENARIO_RFP and detect_tipping_off_request(message):
             logger.info("Tipping-off control notice added to the turn")
             message = TIPPING_OFF_NOTICE + message
 
-        instructions = self._instructions(context, display_name, turn, channel, daily_check=daily_check)
-
-        conversation = getattr(context.activity, "conversation", None)
-        conversation_id = getattr(conversation, "id", "") or "default"
+        instructions = self._instructions(
+            context,
+            display_name,
+            turn,
+            channel,
+            daily_check=daily_check,
+            colleagues=colleague_dir,
+            chat_id=conversation_id,
+        )
 
         try:
             response = await self._invoke_responses_api(
@@ -379,6 +411,7 @@ class FinCrimeTriageAgent(AgentInterface):
                 include_teams_mcp=include_teams_mcp,
                 turn=turn,
                 channel=channel,
+                mcp_enabled=mcp_enabled,
             )
             return response or "Done."
         except Exception as ex:
@@ -442,8 +475,10 @@ class FinCrimeTriageAgent(AgentInterface):
         channel: str = "teams",
         *,
         daily_check: bool = False,
+        colleagues: Optional[list[Colleague]] = None,
+        chat_id: Optional[str] = None,
     ) -> str:
-        agent_name = self._agent_display_name(context)
+        agent_name = self._agent_display_name(context) or self._known_instance_name(turn.identity.agentic_user_id)
         if self._scenario == SCENARIO_RFP:
             return build_rfp_instructions(
                 agent_name,
@@ -452,6 +487,8 @@ class FinCrimeTriageAgent(AgentInterface):
                 channel=channel,
                 team_chat_name=self._team_chat_name,
                 daily_check=daily_check,
+                colleagues=[(c.name, self._colleague_team_label(c), c.user_id) for c in colleagues or []],
+                chat_id=chat_id,
             )
         return build_instructions(
             agent_name,
@@ -479,7 +516,8 @@ class FinCrimeTriageAgent(AgentInterface):
 
         identity = TurnIdentity.from_context(context)
         lines = [
-            f"/whoami - {identity.instance_name or 'this instance'} (claims only; raw tokens are never shown)",
+            f"/whoami - {identity.instance_name or self._known_instance_name(identity.agentic_user_id) or 'this instance'} "
+            "(claims only; raw tokens are never shown)",
             f"Agent identity (actor, azp): {identity.agentic_app_id or '?'}",
             f"Agent user (oid): {identity.agentic_user_id or '?'}",
             f"Tenant: {identity.tenant_id or '?'}",
@@ -570,6 +608,55 @@ class FinCrimeTriageAgent(AgentInterface):
     def _agent_display_name(context: TurnContext) -> str:
         recipient = getattr(context.activity, "recipient", None)
         return getattr(recipient, "name", None) or ""
+
+    # ------------------------------------------------------------------
+    # Agent-to-agent collaboration (doc 17)
+    # ------------------------------------------------------------------
+
+    def _colleague_sender(self, context: TurnContext) -> Optional[Colleague]:
+        if not self._colleagues:
+            return None
+        sender = context.activity.from_property
+        recipient = getattr(context.activity, "recipient", None)
+        identity = TurnIdentity.from_context(context)
+        return colleague_sender(
+            [getattr(sender, "aad_object_id", None), getattr(sender, "id", None)],
+            self._colleagues,
+            self_ids=[identity.agentic_user_id, getattr(recipient, "aad_object_id", None)],
+        )
+
+    def _colleague_directory(self, turn: _Turn) -> list[Colleague]:
+        return directory(self._colleagues, self_ids=[turn.identity.agentic_user_id]) if self._colleagues else []
+
+    def _known_instance_name(self, agentic_user_id: Optional[str]) -> str:
+        """Name of a hired instance from BID_COLLEAGUES: meeting-chat activities carry no recipient name."""
+        return self._colleagues.get((agentic_user_id or "").lower(), "")
+
+    def _colleague_team_label(self, colleague: Colleague) -> str:
+        team = resolve_home_team([colleague.name, colleague.user_id], self._bid_teams)
+        return f"{self._bid_teams[team]['label']} bids" if team else "another bid team"
+
+    def _log_colleague_turn(self, colleague: Colleague, turn: _Turn, conversation_id: str) -> None:
+        receiver = (
+            turn.identity.instance_name
+            or self._known_instance_name(turn.identity.agentic_user_id)
+            or turn.identity.agentic_user_id
+            or "?"
+        )
+        logger.info(
+            "🤝 Agent-to-agent turn: %s (%s) -> %s (%s) in %s; Microsoft 365 tools off for this turn",
+            colleague.name, colleague.user_id, receiver, turn.identity.agentic_user_id or "?", conversation_id,
+            extra={
+                "a2a_from_name": colleague.name,
+                "a2a_from_oid": colleague.user_id,
+                "a2a_to_oid": turn.identity.agentic_user_id,
+                "a2a_conversation": conversation_id,
+            },
+        )
+        span = trace.get_current_span()
+        span.set_attribute("agent.a2a.from_oid", colleague.user_id)
+        span.set_attribute("agent.a2a.from_name", colleague.name)
+        span.set_attribute("agent.a2a.to_oid", turn.identity.agentic_user_id or "")
 
     @staticmethod
     def _instance_hints(context: TurnContext) -> list[str]:
@@ -1016,6 +1103,7 @@ Comment text: {comment_snippet}
         turn: Optional[_Turn] = None,
         function_tools: bool = True,
         channel: str = "teams",
+        mcp_enabled: bool = True,
     ) -> str:
         """Call the Foundry Responses API with the MCP bundle and the scenario's function tools.
 
@@ -1030,7 +1118,7 @@ Comment text: {comment_snippet}
             context,
             include_teams_mcp=include_teams_mcp,
             trail=turn.trail,
-        )
+        ) if mcp_enabled else []
         schemas = turn.tool_schemas if function_tools else []
         logger.info(
             "Invoking Responses API with %d MCP tool server(s) and %d function tool(s)",

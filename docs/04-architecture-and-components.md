@@ -136,6 +136,7 @@ The FinCrime instances call Azure only through the shared default instance ident
 | `ENABLE_BID_DESK` | `false` | Deploys Azure AI Search, the answer-library indexes and the second hosted agent `<env>-rfp-bid-desk` |
 | `BID_DESK_SEARCH_TOKEN_FLOW` | `agent_identity` | How the bid desk gets each instance's Search token (`agent_identity`, `session_identity`, `agent_user`) |
 | `BID_TEAM_CHAT_NAME`, `BID_TEAMS`, `BID_TEAM_RULES` | *(unset)*, built-in | Reminder chat; team → index map; instance-name keyword → team |
+| `BID_COLLEAGUES`, `COLLEAGUE_MAX_TURNS`, `COLLEAGUE_WINDOW_SECONDS` | *(unset: off)*, `3`, `600` | Bid desk only: agent-user object ID → instance name of the hired instances (written by `sync-bid-desk-instances.ps1`), and the per-chat budget for turns sent by another instance ([doc 17](17-agents-collaborating-in-meetings.md)) |
 | `MCP_ENFORCE_ALLOWLIST` | `true` | Passes each server's `allowedTools` (scenario manifest) as `allowed_tools` |
 
 ## 4. What changed versus the official sample
