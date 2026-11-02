@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "${AZURE_ENV_NAME}"
+    },
+    "location": {
+      "value": "${AZURE_LOCATION}"
+    },
+    "publicNetworkAccess": {
+      "value": "${PUBLIC_NETWORK_ACCESS=Enabled}"
+    },
+    "modelName": {
+      "value": "${MODEL_NAME_OVERRIDE=gpt-6.1-sol}"
+    },
+    "modelVersion": {
+      "value": "${MODEL_VERSION_OVERRIDE=2026-09-29}"
+    },
+    "modelCapacity": {
+      "value": "${MODEL_CAPACITY=100}"
+    },
+    "principalId": {
+      "value": "${AZURE_PRINCIPAL_ID}"
+    },
+    "principalType": {
+      "value": "${AZURE_PRINCIPAL_TYPE=User}"
+    },
+    "bidDeskEnabled": {
+      "value": "${ENABLE_BID_DESK=false}"
+    },
+    "searchLocation": {
+      "value": "${BID_DESK_SEARCH_LOCATION=}"
+    }
+  }
+}

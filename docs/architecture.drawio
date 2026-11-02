@@ -1,0 +1,587 @@
+<mxfile host="app.diagrams.net" agent="foundry-autopilot" version="24.7.0">
+  <diagram id="solution" name="Solution">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1150" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="solution-v1" value="Contoso Bank FinCrime Alert Triage autopilot – solution architecture (synthetic demo)" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="1200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v2" value="&lt;b&gt;Transaction Monitoring system&lt;/b&gt;&lt;br&gt;(simulated by demo/send-tm-alert.ps1)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="90" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v3" value="&lt;b&gt;FinCrime team&lt;/b&gt;&lt;br&gt;Elena (manager), Jonas (L1 analyst)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="200" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v4" value="&lt;b&gt;Tenant administrator&lt;/b&gt;&lt;br&gt;Global / AI Administrator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="470" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v5" value="&lt;b&gt;Developer&lt;/b&gt;&lt;br&gt;azd provision / hooks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="880" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v6" value="Microsoft 365 tenant – Zava demo tenant diax07991363 (E7)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4f8fe;strokeColor=#666666;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="260" y="70" width="520" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v7" value="&lt;b&gt;Outlook / Exchange&lt;/b&gt;&lt;br&gt;autopilot's own mailbox&lt;br&gt;miraretail@…" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="290" y="110" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v8" value="&lt;b&gt;Microsoft Teams&lt;/b&gt;&lt;br&gt;group chats, 1:1, org chart&lt;br&gt;&quot;Agents for your team&quot; store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="290" y="200" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v9" value="&lt;b&gt;Word / OneDrive / SharePoint&lt;/b&gt;&lt;br&gt;case notes authored by the agent user" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="290" y="300" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v10" value="&lt;b&gt;Agent 365&lt;/b&gt;&lt;br&gt;messaging &amp;amp; notifications&lt;br&gt;(email, Teams, Word comments)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="110" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v11" value="&lt;b&gt;Agent 365 tool servers (MCP)&lt;/b&gt;&lt;br&gt;Mail · Teams · Word · Excel&lt;br&gt;OneDrive/SharePoint · Calendar&lt;br&gt;agent365.svc.cloud.microsoft" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="220" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v12" value="&lt;b&gt;Microsoft 365 admin center – Agents&lt;/b&gt;&lt;br&gt;Requests → approve, policy template,&lt;br&gt;admin consent, hiring scope · Registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="290" y="460" width="460" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v13" value="&lt;b&gt;Purview &amp;amp; Defender for agents&lt;/b&gt;&lt;br&gt;audit, eDiscovery, DLP (IBAN/card), threat detection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="290" y="560" width="460" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v14" value="Microsoft Entra ID (Agent ID)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#faf5fc;strokeColor=#666666;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="260" y="680" width="520" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v15" value="&lt;b&gt;Agent identity blueprint&lt;/b&gt;&lt;br&gt;app + service principal&lt;br&gt;(created by Foundry)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="290" y="720" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v16" value="&lt;b&gt;Agent identity&lt;/b&gt; (default instance)&lt;br&gt;managed identity of the container&lt;br&gt;role: Foundry User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="530" y="720" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v17" value="&lt;b&gt;Per hire:&lt;/b&gt; agent identity + &lt;b&gt;agent user&lt;/b&gt;&lt;br&gt;MiraRetail · TheoCorporate&lt;br&gt;mailbox, Teams presence, manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="290" y="830" width="460" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v18" value="Azure subscription – rg-fsi-autopilot (Sweden Central)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#666666;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="820" y="70" width="940" height="880" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v19" value="Foundry account fsifincrime03acct → project fsifincrime03proj" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="850" y="110" width="880" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v20" value="&lt;b&gt;Hosted agent&lt;/b&gt; fsifincrime03-fincrime-autopilot&lt;br&gt;digital_worker_type = m365 · 1 vCPU / 2 GiB&lt;br&gt;POST /activity/messages (activity protocol 2.0)&lt;br&gt;auth schemes: Entra + BotServiceTenant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="880" y="150" width="380" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v21" value="&lt;b&gt;Container (this repo)&lt;/b&gt;&lt;br&gt;M365 Agents SDK host → guardrails (tenant, sender, entitlement, NO_REPLY,&lt;br&gt;tipping-off, injection) → Responses API tool loop&lt;br&gt;→ 7 read-only FSI tools (alerts, KYC, transactions, screening,&lt;br&gt;risk indicators, policy) over synthetic data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="880" y="270" width="380" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v22" value="&lt;b&gt;Model deployment&lt;/b&gt;&lt;br&gt;gpt-6.1-sol · GlobalStandard 100K TPM&lt;br&gt;Azure AI Content Safety / Prompt Shields" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="150" width="390" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v23" value="&lt;b&gt;Foundry Toolbox&lt;/b&gt; foundry-autopilot-tools&lt;br&gt;web search · code interpreter (one MCP endpoint)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="260" width="390" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v24" value="&lt;b&gt;Foundry tracing&lt;/b&gt;&lt;br&gt;Application Insights + Log Analytics&lt;br&gt;(content capture off by default)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="360" width="390" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v25" value="&lt;b&gt;Azure Container Registry&lt;/b&gt; (Basic)&lt;br&gt;fincrime-autopilot:&amp;lt;timestamp&amp;gt; (ACR Tasks build)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="880" y="450" width="380" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v26" value="&lt;b&gt;Synthetic data (in image)&lt;/b&gt;&lt;br&gt;6 customers · 6 alerts · 53 transactions&lt;br&gt;sanctions/PEP lists · 11 AML policies" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#ffffff;strokeColor=#999999;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="460" width="390" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-v27" value="&lt;b&gt;azd&lt;/b&gt;: Bicep (account, project, model, ACR, monitoring, RBAC)&lt;br&gt;→ hooks: Toolbox → ACR build → agent version → publish as autopilot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="850" y="860" width="880" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e28" value="1 · [TM ALERT] email" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v2" target="solution-v7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e29" value="@mention in group chat" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v3" target="solution-v8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v7" target="solution-v10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v8" target="solution-v10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e32" value="2 · activity / notification" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v10" target="solution-v20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e33" value="3 · Responses API (managed identity)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v20" target="solution-v22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e34" value="web search / code" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v22" target="solution-v23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e35" value="4 · M365 tools with per-turn agentic-user token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;dashed=1;" edge="1" parent="1" source="solution-v22" target="solution-v11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e36" value="acts as the agent user" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v11" target="solution-v9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e37" value="OpenTelemetry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v20" target="solution-v24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e38" value="image pull" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v25" target="solution-v20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v5" target="solution-v27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e40" value="publish (publishAsAutopilot)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;dashed=1;" edge="1" parent="1" source="solution-v27" target="solution-v12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e41" value="approve + consent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v4" target="solution-v12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e42" value="hire creates" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v12" target="solution-v17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e43" value="1 blueprint → N instances" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="solution-v15" target="solution-v17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e44" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;dashed=1;" edge="1" parent="1" source="solution-v16" target="solution-v20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solution-e45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;dashed=1;" edge="1" parent="1" source="solution-v17" target="solution-v13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="identity" name="Identity">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="identity-v1" value="Identity model: one blueprint, many hired instances" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="1000" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v2" value="&lt;b&gt;Agent identity blueprint&lt;/b&gt; (Entra app + SP)&lt;br&gt;FinCrime Alert Triage · holds the credential every instance token chains back to&lt;br&gt;declared scopes (consented once by the tenant admin)&lt;br&gt;ceilings: who can hire · widest access a manager may grant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="70" width="520" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v3" value="&lt;b&gt;Agent identity&lt;/b&gt; (service principal)&lt;br&gt;authenticates, holds permissions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="160" y="280" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v4" value="&lt;b&gt;Agent user: MiraRetail&lt;/b&gt;&lt;br&gt;mailbox · Teams · OneDrive · org chart&lt;br&gt;manager: Elena Brandt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="160" y="370" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v5" value="&lt;b&gt;Access granted at onboarding&lt;/b&gt;&lt;br&gt;Retail &amp;amp; Wealth chat, SharePoint site,&lt;br&gt;FSI tools: Retail + Wealth alerts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="160" y="470" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v6" value="&lt;b&gt;Agent identity&lt;/b&gt; (service principal)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="280" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v7" value="&lt;b&gt;Agent user: TheoCorporate&lt;/b&gt;&lt;br&gt;mailbox · Teams · OneDrive · org chart&lt;br&gt;manager: Lukas Meyer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="370" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v8" value="&lt;b&gt;Access granted at onboarding&lt;/b&gt;&lt;br&gt;Corporate &amp;amp; SME chat,&lt;br&gt;FSI tools: Corporate &amp;amp; SME alerts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="470" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-e9" value="hire (Elena)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="identity-v2" target="identity-v3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-e10" value="hire (Lukas)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="identity-v2" target="identity-v6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="identity-v3" target="identity-v4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="identity-v6" target="identity-v7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-e13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="identity-v4" target="identity-v5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-e14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="identity-v7" target="identity-v8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v15" value="&lt;b&gt;Gate 1 – Consent&lt;/b&gt; governs the &lt;i&gt;token&lt;/i&gt;: which kinds of calls are ever allowed.&lt;br&gt;Set by the tenant admin at approval. Enforced by Entra ID." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="250" width="520" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v16" value="&lt;b&gt;Gate 2 – Access&lt;/b&gt; governs the &lt;i&gt;account&lt;/i&gt;: which data those calls reach.&lt;br&gt;Set per instance by the manager (or access manager). Enforced by each resource." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="340" width="520" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v17" value="&lt;b&gt;Kill switches&lt;/b&gt;&lt;br&gt;• Block instance – manager / business lead (only a tenant admin unblocks)&lt;br&gt;• Block blueprint – every instance stops at once&lt;br&gt;• Offboard instance – irreversible; agent user removed&lt;br&gt;• Retire blueprint – no new hires · Delete – cascades to all instances" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="430" width="520" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-v18" value="Assistive agent = agent identity acting &lt;i&gt;on behalf of&lt;/i&gt; a signed-in user · Background service = agent identity, app-only, no Microsoft 365 actions · &lt;b&gt;Autopilot = agent identity + agent user account&lt;/b&gt;, acts as itself" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#ffffff;strokeColor=#999999;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="160" y="600" width="1240" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="lifecycle" name="Lifecycle">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lifecycle-v1" value="Autopilot lifecycle and who owns each decision" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="1000" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v2" value="&lt;b&gt;Provision infrastructure&lt;/b&gt;&lt;br&gt;&lt;i&gt;Azure administrator&lt;/i&gt;&lt;br&gt;Foundry account/project, model, ACR, monitoring, RBAC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="90" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v3" value="&lt;b&gt;Build &amp;amp; publish&lt;/b&gt;&lt;br&gt;&lt;i&gt;Developer&lt;/i&gt;&lt;br&gt;Hosted agent version, scopes, ceilings, publishAsAutopilot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="90" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v4" value="&lt;b&gt;Approve, consent, hiring scope&lt;/b&gt;&lt;br&gt;&lt;i&gt;Tenant administrator&lt;/i&gt;&lt;br&gt;Policy template, admin consent, who can hire" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="90" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v5" value="&lt;b&gt;Hire&lt;/b&gt;&lt;br&gt;&lt;i&gt;Manager&lt;/i&gt;&lt;br&gt;Agent identity + agent user (1 Frontier seat)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="770" y="90" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v6" value="&lt;b&gt;Onboard&lt;/b&gt;&lt;br&gt;&lt;i&gt;Manager / access manager&lt;/i&gt;&lt;br&gt;Audience, listening &amp;amp; messaging scope, access, source of truth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="90" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v7" value="&lt;b&gt;Operate&lt;/b&gt;&lt;br&gt;&lt;i&gt;Manager, teammates, business leads&lt;/i&gt;&lt;br&gt;Use · observe · govern (block) · coach" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="90" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v8" value="&lt;b&gt;Offboard&lt;/b&gt;&lt;br&gt;&lt;i&gt;Manager&lt;/i&gt;&lt;br&gt;Irreversible: agent user removed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="90" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="lifecycle-v2" target="lifecycle-v3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="lifecycle-v3" target="lifecycle-v4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="lifecycle-v4" target="lifecycle-v5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="lifecycle-v5" target="lifecycle-v6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-e13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="lifecycle-v6" target="lifecycle-v7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-e14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="lifecycle-v7" target="lifecycle-v8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v15" value="&lt;b&gt;Fleet (tenant administrator, standing):&lt;/b&gt; registry of every hire · audit · block blueprint (all instances stop) · retire (no new hires) · delete (cascades)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="260" width="1730" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v16" value="&lt;b&gt;Blueprint (developer, standing):&lt;/b&gt; observe telemetry by version and instance · evaluate (eval/run_scenarios.py) · ship new versions to every instance · widened scopes re-enter the consent gate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="330" width="1730" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lifecycle-v17" value="&lt;b&gt;This demo (Zava, 2026-11-01):&lt;/b&gt; ✅ Provision · ✅ Build &amp;amp; publish (azd) · ✅ Frontier (25 seats) · ✅ Consent · ✅ Hire: MiraRetail, TheoCorporate (admin center), BankingBids, PublicSectorBids (Entra API) · ✅ RFP Bid Desk verified end to end (per-instance Search access) · ▶ Operate (docs/07, docs/12)" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#ffffff;strokeColor=#999999;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="20" y="400" width="1730" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="biddesk" name="RFP Bid Desk">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="biddesk-0" />
+        <mxCell id="biddesk-1" parent="biddesk-0" />
+        <mxCell id="biddesk-v1" value="RFP Bid Desk autopilot – per-instance identity enforced by Azure (Zava, verified 2026-11-01)" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="40" y="20" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v2" value="One container image and one blueprint serve two hired instances. Each instance reads only its own team's Azure AI Search index with its &lt;b&gt;own agent identity token&lt;/b&gt;; Azure RBAC returns 403 for the other index and for the shared container identity." style="text;html=1;fontSize=12;align=left;verticalAlign=top;whiteSpace=wrap;fontColor=#333333;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="40" y="58" width="1500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v3" value="Microsoft 365 tenant – Zava diax07991363" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf1f0;strokeColor=#b85450;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="270" y="100" width="640" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v4" value="&lt;b&gt;Bid manager&lt;/b&gt; sanjaytest&lt;br&gt;manager, owner, sponsor&lt;br&gt;emails RFPs · chats · @mentions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="40" y="195" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v5" value="&lt;b&gt;Microsoft 365 admin center&lt;/b&gt;&lt;br&gt;publish request · admin consent (via Graph in Zava)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="600" y="135" width="290" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v6" value="&lt;b&gt;Agent 365 messaging &amp;amp; notifications&lt;/b&gt;&lt;br&gt;email · Teams 1:1 / group · Copilot · Word comments" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="290" y="200" width="290" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v7" value="&lt;b&gt;Agent 365 tool servers (MCP)&lt;/b&gt;&lt;br&gt;Word · Mail · OneDrive/SharePoint · Teams&lt;br&gt;allowed_tools: no delete / move / rename" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="600" y="300" width="290" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v8" value="&lt;b&gt;Agent user BankingBids&lt;/b&gt;&lt;br&gt;bankingbids@… · 76c77979-…&lt;br&gt;mailbox · Teams · Frontier seat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="290" y="300" width="290" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v9" value="&lt;b&gt;Agent user PublicSectorBids&lt;/b&gt;&lt;br&gt;publicsectorbids@… · 29af247c-…&lt;br&gt;mailbox · Teams · Frontier seat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="290" y="400" width="290" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v10" value="&lt;b&gt;Word draft + compliance matrix&lt;/b&gt;&lt;br&gt;created by the agent user, shared with the bid manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="600" y="400" width="290" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v11" value="Microsoft Entra Agent ID" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f1fa;strokeColor=#9673a6;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="270" y="550" width="640" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v12" value="&lt;b&gt;Agent identity blueprint&lt;/b&gt;&lt;br&gt;RFP Bid Desk · client ID 887b8e0d-…&lt;br&gt;&lt;br&gt;holds the credential (federated, no secrets)&lt;br&gt;can only create / delete agent identities&lt;br&gt;&lt;br&gt;&lt;b&gt;admin consent (AllPrincipals)&lt;/b&gt;&lt;br&gt;Agent Tools McpServers.Word / Mail /&lt;br&gt;OneDriveSharepoint / Teams.All · AgentData.ReadWrite" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="290" y="590" width="370" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v13" value="&lt;b&gt;Agent identity BankingBids&lt;/b&gt;&lt;br&gt;35b5cd0a-…&lt;br&gt;parent of agent user bankingbids@" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="700" y="590" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v14" value="&lt;b&gt;Agent identity PublicSectorBids&lt;/b&gt;&lt;br&gt;94b2c6ce-…&lt;br&gt;parent of publicsectorbids@" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="700" y="690" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v15" value="&lt;b&gt;Default instance identity&lt;/b&gt;&lt;br&gt;733f9c53-… (container)&lt;br&gt;Foundry User · &lt;b&gt;no Search role&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="700" y="790" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v16" value="&lt;b&gt;Per-turn token for Search&lt;/b&gt; (SEARCH_TOKEN_FLOW=agent_identity)&lt;br&gt;1. SDK gets T1 for the blueprint (federated credential)&lt;br&gt;2. T1 = client assertion for the instance's agent identity → aud search.azure.com, idtyp=app, xms_sub_fct=11&lt;br&gt;3. Microsoft 365 tools use the agent user token (idtyp=user, xms_sub_fct=13)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="290" y="800" width="370" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v17" value="Azure subscription – rg-fsi-autopilot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4f8fe;strokeColor=#6c8ebf;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="950" y="100" width="810" height="870" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v18" value="Foundry project fsifincrime03proj (Sweden Central)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef4fc;strokeColor=#6c8ebf;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="970" y="135" width="770" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v19" value="&lt;b&gt;Hosted agent fsifincrime03-rfp-bid-desk&lt;/b&gt; (version 3)&lt;br&gt;same image as FinCrime · AUTOPILOT_SCENARIO=rfp&lt;br&gt;TOKEN_DEBUG=true · BID_TEAM_RULES: instance IDs → team&lt;br&gt;tools: search_answer_library · get_answer · list_bid_teams + scoped MCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="990" y="170" width="380" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v20" value="&lt;b&gt;Hosted agent fsifincrime03-fincrime-autopilot&lt;/b&gt;&lt;br&gt;same image · AUTOPILOT_SCENARIO=fincrime" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="990" y="340" width="380" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v21" value="&lt;b&gt;Model&lt;/b&gt; gpt-6.1-sol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="1400" y="175" width="320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v22" value="&lt;b&gt;Application Insights&lt;/b&gt; (OpenTelemetry)&lt;br&gt;token[search:…] lines per instance oid" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="1400" y="245" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v23" value="&lt;b&gt;Container Registry&lt;/b&gt; · fincrime-autopilot image" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="1400" y="340" width="320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v24" value="Azure AI Search fsifincrime03-bids-search · North Europe · Basic · API keys disabled" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef4fc;strokeColor=#6c8ebf;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="970" y="500" width="770" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v25" value="&lt;b&gt;Index bids-banking&lt;/b&gt;&lt;br&gt;synthetic banking bid answers" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="1040" y="585" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v26" value="&lt;b&gt;Index bids-publicsector&lt;/b&gt;&lt;br&gt;synthetic public-sector answers" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="1040" y="685" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-v27" value="&lt;b&gt;Live /whoami probe results&lt;/b&gt;&lt;br&gt;&lt;br&gt;BankingBids identity: bids-banking &lt;b&gt;200&lt;/b&gt; · bids-publicsector &lt;b&gt;403&lt;/b&gt;&lt;br&gt;PublicSectorBids identity: bids-publicsector &lt;b&gt;200&lt;/b&gt; · bids-banking &lt;b&gt;403&lt;/b&gt;&lt;br&gt;Shared container identity: &lt;b&gt;403&lt;/b&gt; on both&lt;br&gt;&lt;br&gt;Per instance: &lt;b&gt;Search Index Data Reader&lt;/b&gt; at &lt;b&gt;index&lt;/b&gt; scope&lt;br&gt;(scripts/grant-bid-team-access.ps1)&lt;br&gt;&lt;br&gt;Deployer: Search Service Contributor + Search Index Data Contributor&lt;br&gt;(Bicep, to create and load the indexes)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="biddesk-1">
+          <mxGeometry x="1330" y="560" width="390" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="biddesk-1" source="biddesk-v4" target="biddesk-v6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e29" value="activity for the receiving instance" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="biddesk-1" source="biddesk-v6" target="biddesk-v19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e30" value="agent user token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;exitX=0;exitY=0.85;entryX=1;entryY=0.5;" edge="1" parent="biddesk-1" source="biddesk-v19" target="biddesk-v7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="biddesk-1" source="biddesk-v19" target="biddesk-v21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="biddesk-1" source="biddesk-v19" target="biddesk-v22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#9673a6;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="biddesk-1" source="biddesk-v12" target="biddesk-v13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#9673a6;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="biddesk-1" source="biddesk-v12" target="biddesk-v14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#9673a6;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="biddesk-1" source="biddesk-v12" target="biddesk-v15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e36" value="200" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#2e7d32;strokeWidth=2;fontSize=11;fontColor=#2e7d32;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="biddesk-1" source="biddesk-v13" target="biddesk-v25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e37" value="200" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#2e7d32;strokeWidth=2;fontSize=11;fontColor=#2e7d32;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="biddesk-1" source="biddesk-v14" target="biddesk-v26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biddesk-e38" value="403" style="edgeStyle=none;rounded=1;html=1;endArrow=cross;endFill=0;strokeColor=#c62828;strokeWidth=2;dashed=1;fontSize=11;fontColor=#c62828;labelBackgroundColor=#ffffff;exitX=1;exitY=0.85;entryX=0;entryY=0.2;" edge="1" parent="biddesk-1" source="biddesk-v13" target="biddesk-v26">
+          <mxGeometry relative="1" as="geometry" x="-0.4" />
+        </mxCell>
+        <mxCell id="biddesk-e39" value="403" style="edgeStyle=none;rounded=1;html=1;endArrow=cross;endFill=0;strokeColor=#c62828;strokeWidth=2;dashed=1;fontSize=11;fontColor=#c62828;labelBackgroundColor=#ffffff;exitX=1;exitY=0.15;entryX=0;entryY=0.8;" edge="1" parent="biddesk-1" source="biddesk-v14" target="biddesk-v25">
+          <mxGeometry relative="1" as="geometry" x="0.4" />
+        </mxCell>
+        <mxCell id="biddesk-e40" value="403 (both indexes)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=cross;endFill=0;strokeColor=#c62828;strokeWidth=2;dashed=1;fontSize=11;fontColor=#c62828;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" parent="biddesk-1" source="biddesk-v15" target="biddesk-v26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="hiring" name="Hiring steps &amp; permissions">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="780" math="0" shadow="0">
+      <root>
+        <mxCell id="hiring-0" />
+        <mxCell id="hiring-1" parent="hiring-0" />
+        <mxCell id="hiring-v1" value="From zero to a working instance – prerequisites, steps, who does what, which permission lands where" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="hiring-1">
+          <mxGeometry x="40" y="20" width="1600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v2" value="&lt;b&gt;Prerequisites&lt;/b&gt;&lt;br&gt;&lt;br&gt;P1 · Frontier enrollment + free Frontier seats (1 per instance)&lt;br&gt;&lt;br&gt;P2 · Owner on the subscription / RG, &lt;b&gt;active&lt;/b&gt; (PIM-eligible in Zava → activate)&lt;br&gt;&lt;br&gt;P3 · Global or AI Administrator (approval, admin consent)&lt;br&gt;&lt;br&gt;P4 · Licensed manager in the hiring scope&lt;br&gt;&lt;br&gt;P5 · Region capacity (model, Azure AI Search)&lt;br&gt;&lt;br&gt;P6 · az, azd + Foundry extension, PowerShell 7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="hiring-1">
+          <mxGeometry x="40" y="80" width="240" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v3" value="&lt;b&gt;Developer / Azure admin (Owner)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6c8ebf;strokeColor=#6c8ebf;fontColor=#ffffff;fontSize=11;" vertex="1" parent="hiring-1">
+          <mxGeometry x="300" y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v4" value="&lt;b&gt;1 · azd provision&lt;/b&gt;&lt;br&gt;&lt;br&gt;Bicep: Foundry account + project, model, ACR, monitoring, Azure AI Search" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;verticalAlign=top;spacingTop=6;" vertex="1" parent="hiring-1">
+          <mxGeometry x="300" y="130" width="200" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v5" value="&lt;b&gt;Permissions granted&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Deployer:&lt;/b&gt; Foundry User (project) · Log Analytics Reader · Search Service Contributor + Search Index Data Contributor&lt;br&gt;&lt;b&gt;Project MI:&lt;/b&gt; AcrPull · Cognitive Services User · monitoring roles" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="hiring-1">
+          <mxGeometry x="300" y="280" width="200" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v6" value="&lt;b&gt;Developer / Azure admin (Owner)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6c8ebf;strokeColor=#6c8ebf;fontColor=#ffffff;fontSize=11;" vertex="1" parent="hiring-1">
+          <mxGeometry x="510" y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v7" value="&lt;b&gt;2 · agent version&lt;/b&gt;&lt;br&gt;&lt;br&gt;Hook builds the image and creates the hosted agent version. Foundry creates the &lt;b&gt;blueprint&lt;/b&gt; + default instance identity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;verticalAlign=top;spacingTop=6;" vertex="1" parent="hiring-1">
+          <mxGeometry x="510" y="130" width="200" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v8" value="&lt;b&gt;Permissions granted&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Default instance identity:&lt;/b&gt; Foundry User (project)&lt;br&gt;&lt;b&gt;No Search role&lt;/b&gt; (the shared container must get 403)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="hiring-1">
+          <mxGeometry x="510" y="280" width="200" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="hiring-1" source="hiring-v4" target="hiring-v7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v10" value="&lt;b&gt;Developer / Azure admin (Owner)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6c8ebf;strokeColor=#6c8ebf;fontColor=#ffffff;fontSize=11;" vertex="1" parent="hiring-1">
+          <mxGeometry x="720" y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v11" value="&lt;b&gt;3 · publish&lt;/b&gt;&lt;br&gt;&lt;br&gt;publishAsAutopilot with the declared scopes → request in the Microsoft 365 admin center" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;verticalAlign=top;spacingTop=6;" vertex="1" parent="hiring-1">
+          <mxGeometry x="720" y="130" width="200" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v12" value="&lt;b&gt;Permissions granted&lt;/b&gt;&lt;br&gt;&lt;br&gt;Nothing granted yet: scopes are only &lt;i&gt;declared&lt;/i&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="hiring-1">
+          <mxGeometry x="720" y="280" width="200" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-e13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="hiring-1" source="hiring-v7" target="hiring-v11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v14" value="&lt;b&gt;Global or AI Administrator&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9673a6;strokeColor=#9673a6;fontColor=#ffffff;fontSize=11;" vertex="1" parent="hiring-1">
+          <mxGeometry x="930" y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v15" value="&lt;b&gt;4 · approve + consent&lt;/b&gt;&lt;br&gt;&lt;br&gt;Approve the request and grant admin consent (admin center, or Graph oauth2PermissionGrants)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;verticalAlign=top;spacingTop=6;" vertex="1" parent="hiring-1">
+          <mxGeometry x="930" y="130" width="200" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v16" value="&lt;b&gt;Permissions granted&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Blueprint principal&lt;/b&gt; (AllPrincipals → every instance): Agent Tools McpServers.* · AgentData.ReadWrite · app role OtelWrite" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="hiring-1">
+          <mxGeometry x="930" y="280" width="200" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-e17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="hiring-1" source="hiring-v11" target="hiring-v15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v18" value="&lt;b&gt;Manager (or admin)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b85450;strokeColor=#b85450;fontColor=#ffffff;fontSize=11;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1140" y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v19" value="&lt;b&gt;5 · hire&lt;/b&gt;&lt;br&gt;&lt;br&gt;A Teams · B admin center · C Entra API script. Creates the agent identity + agent user + Frontier seat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;verticalAlign=top;spacingTop=6;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1140" y="130" width="200" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v20" value="&lt;b&gt;Permissions granted&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Agent identity:&lt;/b&gt; manager = owner + sponsor&lt;br&gt;&lt;b&gt;Agent user:&lt;/b&gt; Frontier seat, manager&lt;br&gt;Path C: copies of the delegated grants" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1140" y="280" width="200" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-e21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="hiring-1" source="hiring-v15" target="hiring-v19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v22" value="&lt;b&gt;Owner / UAA + developer&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#82b366;strokeColor=#82b366;fontColor=#ffffff;fontSize=11;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1350" y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v23" value="&lt;b&gt;6 · data access&lt;/b&gt;&lt;br&gt;&lt;br&gt;grant-bid-team-access.ps1 per instance; map instance IDs in BID_TEAM_RULES → new version" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;verticalAlign=top;spacingTop=6;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1350" y="130" width="200" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v24" value="&lt;b&gt;Permissions granted&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Agent identity:&lt;/b&gt; Search Index Data Reader on &lt;b&gt;its own index only&lt;/b&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1350" y="280" width="200" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-e25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="hiring-1" source="hiring-v19" target="hiring-v23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v26" value="&lt;b&gt;Manager (or admin)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b85450;strokeColor=#b85450;fontColor=#ffffff;fontSize=11;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1560" y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v27" value="&lt;b&gt;7 · verify + onboard&lt;/b&gt;&lt;br&gt;&lt;br&gt;/whoami probe (200 own · 403 other), group chat, email intake, Word draft" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;verticalAlign=top;spacingTop=6;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1560" y="130" width="200" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v28" value="&lt;b&gt;Permissions granted&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Agent user:&lt;/b&gt; chat memberships, shared documents" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1560" y="280" width="200" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-e29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="hiring-1" source="hiring-v23" target="hiring-v27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v30" value="Where each permission lands" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="hiring-1">
+          <mxGeometry x="40" y="480" width="1720" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v31" value="&lt;b&gt;Blueprint principal&lt;/b&gt; (once, for all instances)&lt;br&gt;&lt;br&gt;admin consent: Agent Tools McpServers.Word / Mail / OneDriveSharepoint / Teams.All · Messaging Bot API AgentData.ReadWrite · app role Agent365.Observability.OtelWrite&lt;br&gt;&lt;br&gt;&lt;i&gt;Put here: what every instance needs&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="hiring-1">
+          <mxGeometry x="60" y="520" width="400" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v32" value="&lt;b&gt;Each agent identity&lt;/b&gt; (per instance)&lt;br&gt;&lt;br&gt;Azure RBAC on its own data: Search Index Data Reader on one index&lt;br&gt;owner + sponsor = manager&lt;br&gt;(API hires: copies of the delegated grants)&lt;br&gt;&lt;br&gt;&lt;i&gt;Put here: data that differs per team&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="hiring-1">
+          <mxGeometry x="480" y="520" width="400" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v33" value="&lt;b&gt;Each agent user&lt;/b&gt; (per instance)&lt;br&gt;&lt;br&gt;Frontier seat · mailbox · Teams · manager&lt;br&gt;chat memberships · shared documents&lt;br&gt;code-level routing: BID_TEAM_RULES / SEGMENT_SCOPE_RULES&lt;br&gt;&lt;br&gt;&lt;i&gt;Put here: Microsoft 365 collaboration access&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="hiring-1">
+          <mxGeometry x="900" y="520" width="400" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="hiring-v34" value="&lt;b&gt;Shared container + project&lt;/b&gt;&lt;br&gt;&lt;br&gt;default instance identity: Foundry User&lt;br&gt;project managed identity: AcrPull, Cognitive Services User, monitoring&lt;br&gt;deployer: Owner (PIM), Foundry User, Log Analytics Reader, Search contributor roles&lt;br&gt;&lt;br&gt;&lt;i&gt;Never business data here&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="hiring-1">
+          <mxGeometry x="1320" y="520" width="420" height="210" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="analogy" name="Analogy">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="820" math="0" shadow="0">
+      <root>
+        <mxCell id="analogy-0" />
+        <mxCell id="analogy-1" parent="analogy-0" />
+        <mxCell id="analogy-v1" value="Analogy – the badge office, the badge and the employee record" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="analogy-1">
+          <mxGeometry x="40" y="20" width="1300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v2" value="The blueprint holds the key; each agent identity holds the permissions and is what the audit log records; each agent user is the employee record (mailbox, Teams, manager)." style="text;html=1;fontSize=12;align=left;verticalAlign=top;whiteSpace=wrap;fontColor=#333333;" vertex="1" parent="analogy-1">
+          <mxGeometry x="40" y="58" width="1500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v3" value="&lt;b&gt;🔌 Switch off the printer&lt;/b&gt;&lt;br&gt;= disable / delete the blueprint&lt;br&gt;every badge stops working" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="120" y="110" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v4" value="&lt;b&gt;🏢 Badge office for the role &quot;bid desk analyst&quot;&lt;/b&gt;&lt;br&gt;= &lt;b&gt;agent identity blueprint&lt;/b&gt;&lt;br&gt;keeps the printer and the signing key&lt;br&gt;(federated credential, no secrets) · can only print or revoke badges" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="480" y="105" width="480" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v5" value="&lt;b&gt;📜 Facility rules for everyone in the role&lt;/b&gt;&lt;br&gt;canteen · intranet&lt;br&gt;= &lt;b&gt;admin consent on the blueprint&lt;/b&gt;&lt;br&gt;(inherited by every badge)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="1020" y="105" width="330" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v6" value="&lt;b&gt;👤 Employee record&lt;/b&gt;&lt;br&gt;= &lt;b&gt;agent user&lt;/b&gt; bankingbids@…&lt;br&gt;desk · mailbox · Teams · manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="40" y="300" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v7" value="&lt;b&gt;🪪 Badge: BankingBids&lt;/b&gt;&lt;br&gt;= &lt;b&gt;agent identity&lt;/b&gt; 35b5cd0a-…&lt;br&gt;permissions live on the badge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="420" y="300" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v8" value="&lt;b&gt;🪪 Badge: PublicSectorBids&lt;/b&gt;&lt;br&gt;= &lt;b&gt;agent identity&lt;/b&gt; 94b2c6ce-…&lt;br&gt;permissions live on the badge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="900" y="300" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v9" value="&lt;b&gt;👤 Employee record&lt;/b&gt;&lt;br&gt;= &lt;b&gt;agent user&lt;/b&gt; publicsectorbids@…&lt;br&gt;desk · mailbox · Teams · manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="1280" y="300" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v10" value="&lt;b&gt;🚪 Banking vault&lt;/b&gt;&lt;br&gt;index bids-banking" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="420" y="500" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v11" value="&lt;b&gt;🚪 Public-sector vault&lt;/b&gt;&lt;br&gt;index bids-publicsector" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="900" y="500" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v12" value="&lt;b&gt;🏷️ Office's own staff pass&lt;/b&gt;&lt;br&gt;= default instance identity (container)&lt;br&gt;runs the building (model, Toolbox) · opens &lt;b&gt;no&lt;/b&gt; vault" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="1280" y="490" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v13" value="&lt;b&gt;📹 Cameras&lt;/b&gt; record the badge number and the office that printed it&lt;br&gt;= token claims azp/appid (agent identity) · xms_par_app_azp (blueprint) · oid&lt;br&gt;→ /whoami, sign-in logs, Application Insights" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="analogy-1">
+          <mxGeometry x="40" y="480" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#555555;fontSize=11;labelBackgroundColor=#ffffff;" edge="1" parent="analogy-1" source="analogy-v3" target="analogy-v4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e15" value="prints" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#9673a6;fontSize=11;labelBackgroundColor=#ffffff;exitX=0.3;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="analogy-1" source="analogy-v4" target="analogy-v7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e16" value="prints" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#9673a6;fontSize=11;labelBackgroundColor=#ffffff;exitX=0.7;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="analogy-1" source="analogy-v4" target="analogy-v8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e17" value="inherited by every badge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#9673a6;fontSize=11;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=1;entryY=0.3;" edge="1" parent="analogy-1" source="analogy-v5" target="analogy-v8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e18" value="1:1, immutable" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#9673a6;fontSize=11;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="analogy-1" source="analogy-v7" target="analogy-v6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e19" value="1:1, immutable" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#9673a6;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="analogy-1" source="analogy-v8" target="analogy-v9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e20" value="opens (Search Index Data Reader)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#2e7d32;strokeWidth=2;fontSize=11;fontColor=#2e7d32;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="analogy-1" source="analogy-v7" target="analogy-v10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e21" value="opens" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#2e7d32;strokeWidth=2;fontSize=11;fontColor=#2e7d32;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="analogy-1" source="analogy-v8" target="analogy-v11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-e22" value="403" style="edgeStyle=none;rounded=1;html=1;endArrow=cross;endFill=0;strokeColor=#c62828;strokeWidth=2;dashed=1;fontSize=11;fontColor=#c62828;labelBackgroundColor=#ffffff;exitX=0.9;exitY=1;entryX=0.1;entryY=0;" edge="1" parent="analogy-1" source="analogy-v7" target="analogy-v11">
+          <mxGeometry relative="1" as="geometry" x="-0.5" />
+        </mxCell>
+        <mxCell id="analogy-e23" value="403" style="edgeStyle=none;rounded=1;html=1;endArrow=cross;endFill=0;strokeColor=#c62828;strokeWidth=2;dashed=1;fontSize=11;fontColor=#c62828;labelBackgroundColor=#ffffff;exitX=0.1;exitY=1;entryX=0.9;entryY=0;" edge="1" parent="analogy-1" source="analogy-v8" target="analogy-v10">
+          <mxGeometry relative="1" as="geometry" x="-0.5" />
+        </mxCell>
+        <mxCell id="analogy-e24" value="403" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=cross;endFill=0;strokeColor=#c62828;strokeWidth=2;dashed=1;fontSize=11;fontColor=#c62828;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="analogy-1" source="analogy-v12" target="analogy-v11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="analogy-v25" value="&lt;b&gt;Three tokens in badge terms&lt;/b&gt;&lt;br&gt;• &lt;b&gt;T1&lt;/b&gt; – the office proves itself to the printer (blueprint, federated credential); never sent to a resource&lt;br&gt;• &lt;b&gt;Badge swipe&lt;/b&gt; – agent identity token, app-only: idtyp=app, xms_sub_fct=11 → Azure AI Search&lt;br&gt;• &lt;b&gt;Employee login&lt;/b&gt; – agent user token: idtyp=user, xms_sub_fct=13 → Microsoft 365 tools (Mail, Teams, Word, SharePoint)&lt;br&gt;&lt;br&gt;&lt;b&gt;Where to put a new permission&lt;/b&gt;: every instance needs it → blueprint · differs per team → that agent identity (Azure) or agent user (Microsoft 365) · business data → never the container identity" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=14;fillColor=#fffbe6;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;" vertex="1" parent="analogy-1">
+          <mxGeometry x="40" y="650" width="1540" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

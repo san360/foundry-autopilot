@@ -1,0 +1,49 @@
+{
+  "_comment": "RFP Bid Desk (AUTOPILOT_SCENARIO=rfp). allowedTools is passed to the Responses API as allowed_tools so destructive tools (delete, move, rename) are never offered. Only names verified against the live servers ('MCP tools offered by <server>' log line) are listed: the published Teams and Mail references use different names than the servers expose, and a wrong list silently removes every tool (Teams offered [] on 2026-11-02), so those two servers are not allowlisted. Set MCP_ENFORCE_ALLOWLIST=false if a server renames its tools. Excel and Calendar are not attached in this scenario.",
+  "mcpServers": [
+    {
+      "mcpServerName": "mcp_WordServer",
+      "url": "https://agent365.svc.cloud.microsoft/agents/servers/mcp_WordServer",
+      "scope": "McpServers.Word.All",
+      "audience": "ea9ffc3e-8a23-4a7d-836d-234d7c7565c1",
+      "allowedTools": [
+        "WordCreateNewDocument",
+        "WordGetDocumentContent",
+        "WordCreateNewComment",
+        "WordReplyToComment",
+        "CreateDocument",
+        "GetDocumentContent",
+        "CreateComment",
+        "ReplyToComment"
+      ]
+    },
+    {
+      "mcpServerName": "mcp_MailTools",
+      "url": "https://agent365.svc.cloud.microsoft/agents/servers/mcp_MailTools",
+      "scope": "McpServers.Mail.All",
+      "audience": "ea9ffc3e-8a23-4a7d-836d-234d7c7565c1"
+    },
+    {
+      "mcpServerName": "mcp_ODSPRemoteServer",
+      "url": "https://agent365.svc.cloud.microsoft/agents/servers/mcp_ODSPRemoteServer",
+      "scope": "McpServers.OneDriveSharepoint.All",
+      "audience": "ea9ffc3e-8a23-4a7d-836d-234d7c7565c1",
+      "allowedTools": [
+        "findFileOrFolder",
+        "getFileOrFolderMetadata",
+        "getFileOrFolderMetadataByUrl",
+        "readSmallTextFile",
+        "shareFileOrFolder",
+        "findSite",
+        "listDocumentLibrariesInSite",
+        "getDefaultDocumentLibraryInSite"
+      ]
+    },
+    {
+      "mcpServerName": "mcp_TeamsServer",
+      "url": "https://agent365.svc.cloud.microsoft/agents/servers/mcp_TeamsServer",
+      "scope": "McpServers.Teams.All",
+      "audience": "ea9ffc3e-8a23-4a7d-836d-234d7c7565c1"
+    }
+  ]
+}

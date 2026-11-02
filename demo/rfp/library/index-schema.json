@@ -1,0 +1,30 @@
+{
+  "_comment": "Azure AI Search index schema shared by every bid team's answer library. scripts/setup-search-indexes.ps1 sets the name per team.",
+  "fields": [
+    {"name": "id", "type": "Edm.String", "key": true, "filterable": true},
+    {"name": "question", "type": "Edm.String", "searchable": true},
+    {"name": "answer", "type": "Edm.String", "searchable": true},
+    {"name": "client", "type": "Edm.String", "searchable": true, "filterable": true, "facetable": true},
+    {"name": "industry", "type": "Edm.String", "filterable": true, "facetable": true},
+    {"name": "bid_name", "type": "Edm.String", "searchable": true, "filterable": true},
+    {"name": "bid_year", "type": "Edm.Int32", "filterable": true, "sortable": true, "facetable": true},
+    {"name": "section", "type": "Edm.String", "filterable": true},
+    {"name": "source_doc", "type": "Edm.String", "filterable": true},
+    {"name": "owner", "type": "Edm.String", "searchable": true, "filterable": true, "facetable": true},
+    {"name": "last_reviewed", "type": "Edm.String", "filterable": true, "sortable": true},
+    {"name": "tags", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "facetable": true}
+  ],
+  "semantic": {
+    "defaultConfiguration": "default",
+    "configurations": [
+      {
+        "name": "default",
+        "prioritizedFields": {
+          "titleField": {"fieldName": "question"},
+          "prioritizedContentFields": [{"fieldName": "answer"}],
+          "prioritizedKeywordsFields": [{"fieldName": "tags"}]
+        }
+      }
+    ]
+  }
+}

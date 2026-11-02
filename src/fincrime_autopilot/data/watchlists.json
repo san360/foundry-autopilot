@@ -1,0 +1,19 @@
+{
+  "list_name": "SYN-CONSOLIDATED (synthetic sanctions and PEP lists for demo purposes only)",
+  "list_version": "2026-10-20",
+  "sanctions": [
+    {"entry_id": "SYN-SAN-0088", "name": "ALPIN MARITIME LOGISTICS L.L.C.", "type": "entity", "country": "AE", "aliases": ["Alpin Marine Logistics"], "registration": "DMCC-551907", "address": "Plot S20112, Jebel Ali Free Zone, Dubai", "program": "SYN-EU-2026/88 (synthetic maritime restrictive measures)", "listed_on": "2026-10-20"},
+    {"entry_id": "SYN-SAN-0041", "name": "KESTREL SHIPPING FZE", "type": "entity", "country": "AE", "aliases": [], "registration": "JAFZA-77812", "address": "Jebel Ali Free Zone, Dubai", "program": "SYN-EU-2024/41", "listed_on": "2024-06-11"},
+    {"entry_id": "SYN-SAN-0017", "name": "ORION PETROCHEMICAL TRADING LTD", "type": "entity", "country": "CY", "aliases": ["Orion Petrochem"], "registration": "HE 412377", "address": "Limassol", "program": "SYN-UN-2023/17", "listed_on": "2023-02-24"},
+    {"entry_id": "SYN-SAN-0102", "name": "BALTIC AMBERLINE HOLDINGS LIMITED", "type": "entity", "country": "CY", "aliases": [], "registration": "HE 398812", "address": "Nicosia", "program": "SYN-EU-2025/102", "listed_on": "2025-09-30"},
+    {"entry_id": "SYN-SAN-0063", "name": "Ivo MARREN", "type": "individual", "country": "", "aliases": ["Ivo Marrenko"], "date_of_birth": "1971-08-14", "program": "SYN-UN-2022/63", "listed_on": "2022-03-03"},
+    {"entry_id": "SYN-SAN-0071", "name": "Lena VORSTADT", "type": "individual", "country": "", "aliases": [], "date_of_birth": "1983-02-02", "program": "SYN-EU-2024/71", "listed_on": "2024-11-19"},
+    {"entry_id": "SYN-SAN-0093", "name": "GREY HERON CAPITAL PARTNERS", "type": "entity", "country": "VG", "aliases": [], "registration": "BVI-1934411", "address": "Road Town, Tortola", "program": "SYN-OFAC-2025/93", "listed_on": "2025-05-07"},
+    {"entry_id": "SYN-SAN-0110", "name": "NORDLICHT CHARTERING S.A.", "type": "entity", "country": "PA", "aliases": [], "registration": "PA-55102", "address": "Panama City", "program": "SYN-EU-2026/110", "listed_on": "2026-03-12"}
+  ],
+  "pep": [
+    {"entry_id": "SYN-PEP-0007", "name": "Alexander Hale", "role": "Deputy Minister of Infrastructure", "country": "AT", "category": "Domestic PEP", "since": "2023-01-15", "relatives_and_close_associates": [{"name": "Viktor Hale", "relationship": "Brother"}, {"name": "Irene Hale", "relationship": "Spouse"}]},
+    {"entry_id": "SYN-PEP-0012", "name": "Margit Sorensen", "role": "Board member, State Investment Fund", "country": "DK", "category": "Domestic PEP", "since": "2022-04-01", "relatives_and_close_associates": []},
+    {"entry_id": "SYN-PEP-0020", "name": "Tomasz Wierzbicki", "role": "Member of Parliament", "country": "PL", "category": "Domestic PEP", "since": "2023-11-13", "relatives_and_close_associates": []}
+  ]
+}

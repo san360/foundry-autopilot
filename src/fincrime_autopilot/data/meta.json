@@ -1,0 +1,35 @@
+{
+  "bank": "Contoso Bank (fictional)",
+  "disclaimer": "SYNTHETIC DEMO DATA. All customers, transactions, watchlist entries, people and policies are fictional. Do not use for real compliance decisions.",
+  "currency": "EUR",
+  "as_of": "2026-10-26",
+  "thresholds": {
+    "cash_reporting_threshold": 10000.0,
+    "structuring_band_low": 9000.0,
+    "structuring_window_days": 7,
+    "structuring_min_deposits": 3,
+    "screening_potential_match": 0.85,
+    "mule_min_unrelated_senders": 5,
+    "mule_pass_through_ratio": 0.8,
+    "mule_pass_through_window_hours": 48,
+    "profile_deviation_multiple": 5.0,
+    "large_incoming_amount": 100000.0,
+    "trade_price_deviation_pct": 300.0
+  },
+  "segments": ["Retail", "Wealth", "Corporate & SME"],
+  "teams": {
+    "retail": {"name": "FinCrime Ops - Retail & Wealth", "segments": ["Retail", "Wealth"]},
+    "corporate": {"name": "FinCrime Ops - Corporate & SME", "segments": ["Corporate & SME"]}
+  },
+  "enhanced_monitoring_jurisdictions": {
+    "KY": "Enhanced monitoring - offshore trusts and corporate vehicles (internal list, synthetic)"
+  },
+  "counterparty_categories": {
+    "CoinHarbor Exchange Ltd": "Crypto-asset service provider (CASP)",
+    "Kancelaria Notarialna A. Nowak - escrow": "Notary escrow account",
+    "Seabright Family Trust": "Offshore discretionary trust"
+  },
+  "trade_reference_prices": {
+    "wireless earbuds": {"unit_price_eur": 9.0, "source": "Synthetic trade price reference DB, Q3 2026 median import price"}
+  }
+}

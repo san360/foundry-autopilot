@@ -1,0 +1,77 @@
+[
+  {
+    "customer_id": "CUST-10021", "name": "Daniel Mercer", "type": "individual", "segment": "Retail",
+    "occupation": "Secondary school teacher (salaried)", "residence_country": "DE", "city": "Hamburg",
+    "date_of_birth": "1988-05-17", "onboarded": "2019-03-14",
+    "kyc_risk_rating": "Low", "last_kyc_review": "2024-03-10", "next_kyc_review_due": "2027-03-10",
+    "pep": null,
+    "expected_activity": {"monthly_credits_eur": 4200, "cash_usage": "Rare (under EUR 500 per month)", "cross_border": "None expected"},
+    "source_of_funds_documents": [],
+    "relationship_manager": "Retail Service Centre Hamburg",
+    "accounts": [{"account_id": "ACC-77120", "product": "Current account", "iban_masked": "DE** **** **** **** 4471"}]
+  },
+  {
+    "customer_id": "CUST-10087", "name": "Sofia Lindqvist", "type": "individual", "segment": "Retail",
+    "occupation": "University student (part-time cafe job)", "residence_country": "SE", "city": "Uppsala",
+    "date_of_birth": "2005-04-02", "onboarded": "2024-09-01",
+    "kyc_risk_rating": "Low", "last_kyc_review": "2024-09-01", "next_kyc_review_due": "2027-09-01",
+    "pep": null,
+    "expected_activity": {"monthly_credits_eur": 900, "cash_usage": "None", "cross_border": "Low (occasional EU card spend)"},
+    "source_of_funds_documents": [],
+    "relationship_manager": "Retail Digital Service Team",
+    "accounts": [{"account_id": "ACC-81544", "product": "Student account", "iban_masked": "SE** **** **** **** **** 9312"}]
+  },
+  {
+    "customer_id": "CUST-10044", "name": "Weserline Freight Forwarding GmbH", "type": "business", "segment": "Corporate & SME",
+    "industry": "Freight forwarding and ship chartering", "registration": "HRB 22871 (Amtsgericht Bremen)",
+    "residence_country": "DE", "city": "Bremen", "onboarded": "2018-06-01",
+    "kyc_risk_rating": "Medium", "last_kyc_review": "2025-11-02", "next_kyc_review_due": "2026-11-02",
+    "pep": null,
+    "beneficial_owners": [{"name": "Hendrik Weser", "ownership_pct": 70}, {"name": "Clara Weser", "ownership_pct": 30}],
+    "expected_activity": {"monthly_credits_eur": 1200000, "cash_usage": "None", "cross_border": "High (EU, UAE, Singapore charter and port payments)"},
+    "source_of_funds_documents": [],
+    "relationship_manager": "Corporate Banking North - J. Albers",
+    "accounts": [{"account_id": "ACC-40210", "product": "Business current account", "iban_masked": "DE** **** **** **** 0210"}]
+  },
+  {
+    "customer_id": "CUST-10102", "name": "Marta Kowalczyk", "type": "individual", "segment": "Wealth",
+    "occupation": "Dentist (self-employed practice owner)", "residence_country": "DE", "city": "Berlin",
+    "date_of_birth": "1979-11-08", "onboarded": "2016-02-19",
+    "kyc_risk_rating": "Low", "last_kyc_review": "2025-02-19", "next_kyc_review_due": "2028-02-19",
+    "pep": null,
+    "expected_activity": {"monthly_credits_eur": 14000, "cash_usage": "Rare", "cross_border": "Low (PL family transfers)"},
+    "source_of_funds_documents": [
+      {"doc_id": "SOF-2026-0412", "description": "Notarised sale agreement for apartment ul. Dluga 12/4, Krakow, dated 2026-09-12. Sale price EUR 310,000 paid via notary escrow (Kancelaria Notarialna A. Nowak).", "uploaded": "2026-10-02", "verified_by": "RM P. Brandt", "verified_on": "2026-10-03", "expected_amount_eur": 310000, "expected_counterparty": "Kancelaria Notarialna A. Nowak - escrow"}
+    ],
+    "relationship_manager": "Wealth Berlin - P. Brandt",
+    "accounts": [
+      {"account_id": "ACC-55309", "product": "Premier current account", "iban_masked": "DE** **** **** **** 5309"},
+      {"account_id": "ACC-55310", "product": "Investment account", "iban_masked": "DE** **** **** **** 5310"}
+    ]
+  },
+  {
+    "customer_id": "CUST-10133", "name": "Viktor Hale", "type": "individual", "segment": "Wealth",
+    "occupation": "Managing director, real-estate holding company", "residence_country": "AT", "city": "Vienna",
+    "date_of_birth": "1974-01-23", "onboarded": "2021-05-11",
+    "kyc_risk_rating": "High", "last_kyc_review": "2025-06-30", "next_kyc_review_due": "2026-06-30",
+    "pep": {"status": "RCA", "description": "Relative or close associate: brother of Alexander Hale (domestic PEP, Deputy Minister of Infrastructure, synthetic)", "edd_last_completed": "2025-06-30", "edd_refresh_due": "2026-06-30", "senior_management_approval": "2021-05-10"},
+    "expected_activity": {"monthly_credits_eur": 40000, "cash_usage": "None", "cross_border": "Medium (AT, CH, offshore trust distributions)"},
+    "source_of_funds_documents": [
+      {"doc_id": "SOW-2021-0088", "description": "Source of wealth summary at onboarding: real-estate holding dividends and family trust distributions. Trust deed for Seabright Family Trust not on file.", "uploaded": "2021-05-09", "verified_by": "Private Banking Vienna", "verified_on": "2021-05-10"}
+    ],
+    "relationship_manager": "Private Banking Vienna - L. Gruber",
+    "accounts": [{"account_id": "ACC-90017", "product": "Private banking current account", "iban_masked": "AT** **** **** **** 0017"}]
+  },
+  {
+    "customer_id": "CUST-10150", "name": "Northwind Imports BV", "type": "business", "segment": "Corporate & SME",
+    "industry": "Consumer electronics import and wholesale", "registration": "KvK 74119023",
+    "residence_country": "NL", "city": "Rotterdam", "onboarded": "2020-08-24",
+    "kyc_risk_rating": "Medium", "last_kyc_review": "2026-02-15", "next_kyc_review_due": "2028-02-15",
+    "pep": null,
+    "beneficial_owners": [{"name": "Pieter van Dalen", "ownership_pct": 100}],
+    "expected_activity": {"monthly_credits_eur": 350000, "cash_usage": "None", "cross_border": "High (imports from CN and HK)"},
+    "source_of_funds_documents": [],
+    "relationship_manager": "Business Banking Rotterdam - S. de Vries",
+    "accounts": [{"account_id": "ACC-66021", "product": "Business current account", "iban_masked": "NL** **** **** **** 6021"}]
+  }
+]

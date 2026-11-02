@@ -1,0 +1,111 @@
+<!--
+  Sample Azure API Management policy for an MCP server (APIM > APIs > MCP servers > Policies).
+  Allows only Entra agent identities acting autonomously that hold the app role Mcp.Bids.Read,
+  maps the team roles to a header for the backend, rate limits per agent identity and logs azp/oid.
+  See docs/15-mcp-behind-ai-gateway.md. NOT wired into azd: nothing here is deployed by this repository.
+
+  Named values to create in APIM:
+    mcp-tenant-id          Entra tenant ID
+    mcp-api-client-id      Client ID of the "Zava Bids MCP" app registration (aud of v2 tokens)
+    mcp-api-app-id-uri     Its Application ID URI, for example api://<client-id> (aud of v1 tokens)
+    mcp-backend-resource   Audience the backend MCP server accepts from the gateway's managed identity
+-->
+<policies>
+    <inbound>
+        <base />
+        <!-- 1. Authenticate: our tenant, the MCP API audience, an agent identity acting as itself (app-only). -->
+        <validate-azure-ad-token tenant-id="{{mcp-tenant-id}}" header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized: an Entra token for the bids MCP API, issued to an agent identity, is required." output-token-variable-name="jwt">
+            <audiences>
+                <audience>{{mcp-api-client-id}}</audience>
+                <audience>{{mcp-api-app-id-uri}}</audience>
+            </audiences>
+            <required-claims>
+                <claim name="idtyp" match="any">
+                    <value>app</value>
+                </claim>
+                <!-- xms_sub_fct is a space-separated list; 11 = agent identity -->
+                <claim name="xms_sub_fct" match="any" separator=" ">
+                    <value>11</value>
+                </claim>
+            </required-claims>
+        </validate-azure-ad-token>
+        <!-- 2. Who is calling. azp (v2) or appid (v1) = the agent identity; for agent identities it equals oid. -->
+        <set-variable name="agentId" value="@{
+            var jwt = (Jwt)context.Variables["jwt"];
+            return jwt.Claims.GetValueOrDefault("azp", jwt.Claims.GetValueOrDefault("appid", ""));
+        }" />
+        <set-variable name="agentOid" value="@(((Jwt)context.Variables["jwt"]).Claims.GetValueOrDefault("oid", ""))" />
+        <!-- Parent blueprint: logged for audit, never used to grant access. -->
+        <set-variable name="agentParent" value="@(((Jwt)context.Variables["jwt"]).Claims.GetValueOrDefault("xms_par_app_azp", ""))" />
+        <set-variable name="agentRoles" value="@(((Jwt)context.Variables["jwt"]).Claims.GetValueOrDefault("roles", ""))" />
+        <!-- 3. Authorize on the app role. -->
+        <choose>
+            <when condition="@{
+                var jwt = (Jwt)context.Variables["jwt"];
+                return !(jwt.Claims.ContainsKey("roles") && jwt.Claims["roles"].Contains("Mcp.Bids.Read"));
+            }">
+                <trace source="bids-mcp" severity="warning">
+                    <message>@("MCP call refused: app role Mcp.Bids.Read missing for agent " + (string)context.Variables["agentId"])</message>
+                    <metadata name="agent-azp" value="@((string)context.Variables["agentId"])" />
+                    <metadata name="agent-oid" value="@((string)context.Variables["agentOid"])" />
+                    <metadata name="agent-parent" value="@((string)context.Variables["agentParent"])" />
+                </trace>
+                <return-response>
+                    <set-status code="403" reason="Forbidden" />
+                    <set-header name="WWW-Authenticate" exists-action="override">
+                        <value>Bearer error="insufficient_scope", error_description="The app role Mcp.Bids.Read is required."</value>
+                    </set-header>
+                </return-response>
+            </when>
+        </choose>
+        <!-- 4. Team entitlement from the per-instance roles (design A in doc 15 section 5). -->
+        <set-variable name="bidsTeams" value="@{
+            var jwt = (Jwt)context.Variables["jwt"];
+            var roles = jwt.Claims.ContainsKey("roles") ? jwt.Claims["roles"] : new string[0];
+            var teams = "";
+            if (roles.Contains("Mcp.Bids.Banking")) { teams += "banking,"; }
+            if (roles.Contains("Mcp.Bids.PublicSector")) { teams += "publicsector,"; }
+            return teams.TrimEnd(',');
+        }" />
+        <!-- 5. One budget per instance, and claims in traces and metrics (gateway logs don't contain claims). -->
+        <rate-limit-by-key calls="60" renewal-period="60" counter-key="@((string)context.Variables["agentId"])" remaining-calls-variable-name="remainingCallsPerAgent" />
+        <trace source="bids-mcp" severity="information">
+            <message>@("MCP call by agent " + (string)context.Variables["agentId"])</message>
+            <metadata name="agent-azp" value="@((string)context.Variables["agentId"])" />
+            <metadata name="agent-oid" value="@((string)context.Variables["agentOid"])" />
+            <metadata name="agent-parent" value="@((string)context.Variables["agentParent"])" />
+            <metadata name="agent-roles" value="@((string)context.Variables["agentRoles"])" />
+        </trace>
+        <emit-metric name="McpCalls" namespace="bids-mcp">
+            <dimension name="AgentId" value="@((string)context.Variables["agentId"])" />
+            <dimension name="ParentBlueprint" value="@((string)context.Variables["agentParent"])" />
+            <dimension name="Teams" value="@((string)context.Variables["bidsTeams"])" />
+        </emit-metric>
+        <!-- 6. Forward the caller to the backend. These headers override anything the caller sent. -->
+        <set-header name="X-Agent-Id" exists-action="override">
+            <value>@((string)context.Variables["agentId"])</value>
+        </set-header>
+        <set-header name="X-Agent-Parent" exists-action="override">
+            <value>@((string)context.Variables["agentParent"])</value>
+        </set-header>
+        <set-header name="X-Bids-Teams" exists-action="override">
+            <value>@((string)context.Variables["bidsTeams"])</value>
+        </set-header>
+        <set-header name="X-Correlation-Id" exists-action="override">
+            <value>@(context.RequestId.ToString())</value>
+        </set-header>
+        <!-- The backend accepts only the gateway's managed identity, so the X-* headers can't be forged.
+             For end-to-end identity instead, remove this line and let the backend validate the forwarded agent token. -->
+        <authentication-managed-identity resource="{{mcp-backend-resource}}" />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+        <!-- Don't read context.Response.Body in MCP policies: it buffers the response and breaks streaming. -->
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>

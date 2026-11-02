@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+# Contoso Bank FinCrime Alert Triage autopilot (synthetic demo).
+# Forked from microsoft-foundry/foundry-samples: samples/python/foundry-autopilot-agent
+
+requiredVersions:
+  azd: '>=1.27.1'
+  extensions:
+    microsoft.foundry: '>=1.0.0-beta.1'
+
+name: fsi-fincrime-autopilot
+
+infra:
+  provider: bicep
+  path: infra
+  module: main
+
+hooks:
+  preprovision:
+    shell: pwsh
+    run: ./scripts/register-resource-providers.ps1
+    interactive: false
+    continueOnError: false
+
+  # Creates the Foundry Toolbox, builds the image in ACR, creates a new hosted agent
+  # version (digital_worker_type m365) and publishes the autopilot blueprint for approval.
+  postprovision:
+    shell: pwsh
+    run: ./scripts/post-provision.ps1
+    interactive: true
+    continueOnError: false
