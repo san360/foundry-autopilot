@@ -66,6 +66,8 @@ Key points:
 
 People outside the configured audience are **blocked by default, before the autopilot ever calls a model**.
 
+This is the platform's model as Microsoft describes it. Learn documents no place to configure the audience, and this repo doesn't enforce one per person yet: see [18 · Governance gaps, gap 1](18-governance-gaps.md#restricting-who-can-use-an-agent-instance-out-of-the-box-options).
+
 ## 4. Who can stop it
 
 | Control | Who | Reversible | Effect |
