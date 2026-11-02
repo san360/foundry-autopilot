@@ -138,6 +138,9 @@ flowchart TB
 | Business data | **Never** the default instance identity: every instance would get it | — |
 | Access to **your own API or MCP server** (for example behind an API Management AI gateway that checks `roles`) | An **app role** on that instance's agent identity, or on the blueprint principal with the API listed as inheritable for every instance | `Mcp.Bids.Banking` for BankingBids only: [doc 15](15-mcp-behind-ai-gateway.md#3-where-to-assign-what) |
 | Tenant-wide guardrails: Conditional Access, audit, DLP, risk detection | A **policy template** at approval, plus Entra, Purview and Defender policies | [14 · Agent policy templates](14-agent-policy-templates.md) |
+| Limiting **who can talk to** an instance | No permission does this: it's an audience decision, not a grant. Use information barriers for segments and an allowlist in code for named people | [18 · Governance gaps](18-governance-gaps.md#restricting-who-can-use-an-agent-instance-out-of-the-box-options) |
+
+Permissions decide what an instance can reach, not who can use it or where it can send things. For the gaps that remain and how to close them, see [18 · Governance gaps](18-governance-gaps.md).
 
 ## 5. Verify it yourself
 
