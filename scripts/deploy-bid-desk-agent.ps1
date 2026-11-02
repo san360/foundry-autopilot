@@ -10,7 +10,8 @@
   on its own after the image is built.
   Settings (azd env set ...): BID_DESK_SEARCH_TOKEN_FLOW (agent_identity | agent_user, default agent_identity),
   BID_DESK_TOKEN_DEBUG (default true), BID_DESK_TOKEN_FOOTER (default false), BID_TEAM_CHAT_NAME, BID_TEAMS,
-  BID_TEAM_RULES, BID_DESK_DISPLAY_NAME, BID_DESK_APP_VERSION.
+  BID_TEAM_RULES, BID_COLLEAGUES (written by sync-bid-desk-instances.ps1), COLLEAGUE_MAX_TURNS,
+  COLLEAGUE_WINDOW_SECONDS, BID_DESK_DISPLAY_NAME, BID_DESK_APP_VERSION.
 .EXAMPLE
   pwsh ./scripts/deploy-bid-desk-agent.ps1
 #>

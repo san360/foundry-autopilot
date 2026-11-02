@@ -43,7 +43,9 @@ $runtimeEnvironmentVariables = @{
 # TOKEN_DEBUG / TOKEN_FOOTER: token inspector (/whoami, claim summaries in logs); never logs raw tokens.
 $optionalSettings = @("TRIAGE_NOTIFY_CHAT_NAME", "SEGMENT_SCOPE_RULES", "TOKEN_DEBUG", "TOKEN_FOOTER", "MCP_ENFORCE_ALLOWLIST")
 if ($scenario -eq "rfp") {
-    $optionalSettings += @("SEARCH_ENDPOINT", "SEARCH_TOKEN_FLOW", "BID_TEAMS", "BID_TEAM_RULES", "BID_TEAM_CHAT_NAME")
+    # BID_COLLEAGUES / COLLEAGUE_*: agent-to-agent collaboration between hired instances (docs/17).
+    $optionalSettings += @("SEARCH_ENDPOINT", "SEARCH_TOKEN_FLOW", "BID_TEAMS", "BID_TEAM_RULES", "BID_TEAM_CHAT_NAME",
+        "BID_COLLEAGUES", "COLLEAGUE_MAX_TURNS", "COLLEAGUE_WINDOW_SECONDS")
 }
 foreach ($optional in $optionalSettings) {
     $value = [Environment]::GetEnvironmentVariable($optional)
