@@ -1,6 +1,6 @@
 # 16a · Demo script: autopilots in a Teams meeting
 
-A 15-minute run of show for the options in [16 · Voice, meetings and avatars](16-voice-and-meetings.md). Part 1 is demoable **today** (in-meeting chat, ❓ test first with checklist T1–T4). Part 2 needs phase 1 (post-meeting recap) and two tenant switches. Part 3 is a talk track for live transcripts (after 14 Nov 2026) and voice + avatar (spike): **don't demo what isn't built**.
+A 15-minute run of show for the options in [16 · Voice, meetings and avatars](16-voice-and-meetings.md). Part 1 is demoable **today** (in-meeting chat, option A, ❓ test first with checklist T1–T4). Part 2 needs the post-meeting recap (option B) and two tenant switches. Part 3 is a talk track for live transcripts (after 14 Nov 2026), calling a voice line (option D, preview) and a voice + avatar participant in the meeting (spike): **don't demo what isn't built**.
 
 ## Cast and prerequisites
 
@@ -16,7 +16,7 @@ A 15-minute run of show for the options in [16 · Voice, meetings and avatars](1
 | Profile photos for the instances (synthetic illustrations labelled AI) | All parts | Graph `PUT /users/{id}/photo/$value` as a User Administrator, a day ahead (photos take time to propagate) |
 | Two scheduled meetings with an agenda in the body | All parts | Outlook: *"WB-2026-117 bid review"* (agenda: 4.2 data residency, 6.1 ISO 27001, pricing – human only) and *"ALR-2026-1043 huddle"* (internal attendees only) |
 | Transcription allowed by meeting policy | Part 2 | Teams admin center > Meetings > Meeting policies |
-| **Microsoft Graph access** to transcripts, Work IQ consent, Copilot Credits spending policy | Part 2 | Doc 16 §1a, checklist T5–T6 |
+| **Microsoft Graph access** to transcripts, Work IQ consent, Copilot Credits spending policy | Part 2 | Doc 16 §3a, checklist T5 |
 | Fallback | All parts | Screenshots of a dry run; the bid desk 1:1 chat answers the same questions |
 
 ## Part 1 · Live in the meeting chat (6 min, today)
@@ -44,7 +44,7 @@ A 15-minute run of show for the options in [16 · Voice, meetings and avatars](1
 | Min | Topic | Say | Status |
 |---|---|---|---|
 | 11:00 | Live transcript | *"From mid-November, Teams can give agents the transcript while the meeting runs. BankingBids will answer 'BankingBids, check 6.1' in the chat within seconds."* | 🗺️ GA Nov 2026 |
-| 12:30 | Voice | *"Speaking in the meeting needs a separate voice participant, built on Azure Communication Services and the Voice Live API. It shows as an external participant and has its own identity, so we scope it per team like the rest."* | DIY spike |
+| 12:30 | Voice | *"Today you can phone an autopilot from Teams: a Foundry voice agent behind a Teams Phone number, with our bid desk logic behind it. Speaking inside the meeting needs a separate voice participant that shows as external or as a bot, so we scope its identity per team like the rest."* | Phone line 🧪 preview · in-meeting voice: DIY spike |
 | 13:30 | Avatar | *"The photo you saw is live. A talking avatar uses Azure Speech avatars, available in our region, and must always be clearly labelled as AI."* | Photo ✅, avatar spike |
 | 14:30 | Close | *"Start where the risk is lowest: chat and post-meeting recaps. Add live and voice when they're GA and you need them."* | — |
 
@@ -54,6 +54,6 @@ A 15-minute run of show for the options in [16 · Voice, meetings and avatars](1
 |---|---|
 | "Is it recording us?" | No. Humans start transcription, Teams shows the notice, and the agent reads only transcripts of meetings it was invited to. |
 | "Can it hear a meeting it wasn't invited to?" | No. It uses its own delegated access; invitation is the boundary. |
-| "Can it talk?" | Not as the hired account today. A separate voice participant can, as a pilot (doc 16 option d). |
+| "Can it talk?" | Not as the hired account: Microsoft documents no way for an agent user to join call audio. A Teams Phone voice line can (doc 16 option D, preview); a voice participant in the meeting is a spike (options F and G). |
 | "Will FinCrime speak about a case aloud?" | We don't recommend it: tipping-off and recording risk. Text in an internal chat, human decides. |
 | "Is the face a real person?" | No. Synthetic, labelled AI. Custom look-alike avatars are a Limited Access feature requiring the person's written consent. |
