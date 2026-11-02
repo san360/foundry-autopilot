@@ -216,6 +216,8 @@ Consent decides which calls the token may make. Access decides which data those 
 | 9 | Zava, 2026-10-31: no approve button for the FinCrime blueprint, only *Accept permissions* | No template may be attached to the FinCrime blueprint | Check the agent's details in the registry. While the blueprint is still pending, pick *Demo autopilot – sandbox* when the approve button appears; once approved, it can't be changed (item 1) |
 | 10 | UI names differ from Learn (*Policy templates* vs *Settings > Templates*; two default policy name sets) | Confusing in runbooks | Use the UI names in §1 and §2 |
 
+These items are part of a wider gap analysis that also covers audience, kill switches, outbound actions and tool consent: [18 · Governance gaps](18-governance-gaps.md).
+
 ## Sources
 
 * [Policy templates](https://learn.microsoft.com/microsoft-agent-365/admin/policy-template) and [Agent settings](https://learn.microsoft.com/microsoft-agent-365/admin/agent-settings)
