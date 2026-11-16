@@ -26,6 +26,7 @@ A production-shaped demo of **Microsoft Foundry autopilots** for financial servi
 | 16 | [Voice, meetings and avatars](docs/16-voice-and-meetings.md) + [demo script](docs/16a-voice-meeting-demo-script.md) | **Can an instance join a Teams meeting or call, listen, speak and act?** Plain-language text-versus-audio explainer; an instance gets chat, events and transcripts (Work IQ, live from Nov 2026), but **no documented way for the agent user to join call audio**. Voice today: call a **Foundry voice agent on a Teams Phone number** (preview, hosted agent as subagent or conversation engine); in-meeting voice and **avatars** only through a separate ACS or media-bot participant (DIY). Options matrix with identity and per-instance data boundary, recommendation, roadmap, tenant checklist |
 | 17 | [Agents collaborating in a Teams meeting](docs/17-agents-collaborating-in-meetings.md) | **Can two hired instances work together in a meeting chat?** Yes, verified live: BankingBids @mentions PublicSectorBids, which answers from its own library for the bid manager to approve (**ask, don't access**: Azure still returns 403 across teams). Delivery verdict vs the documented "no bot-to-bot" rule, loop prevention, sharing policy, audit, 10-minute run of show |
 | 18 | [Governance gaps](docs/18-governance-gaps.md) | **What the platform enforces, what code enforces, what's missing** for autopilots in a regulated bank: 15 gaps with evidence (observed in Zava or documented on Learn), severity, owner and mitigation; **restricting who can use an instance** (out-of-the-box options and the sample's `/access` allowlist); a control map and a now / next / watch roadmap |
+| 19 | [Private networking and Teams / Copilot channel security](docs/19-private-networking-and-channel-security.md) | **Can a private-endpoint-only Foundry still serve Teams and Copilot, and where do you secure it?** Only through a Foundry-managed, source-IP-filtered public Activity Protocol route (no Private Link for Microsoft 365 channels; autopilot support for this path undocumented). Protocol trace, Bot Service roles (Microsoft-managed vs customer-owned), why App Gateway / APIM / Front Door can't sit in the native route, firewall allowlist matrix with unverified paths flagged, identity and tool governance, validation plan, open questions |
 
 ## Status (2026-10-31)
 
@@ -78,7 +79,7 @@ scripts/                    post-provision pipeline (Toolbox, ACR build, agent v
 src/fincrime_autopilot/     hosted agent: host, agent, prompts, tool loop, FSI tools, guardrails, synthetic data; RFP Bid Desk scenario (AUTOPILOT_SCENARIO=rfp), per-instance tokens, token inspector
 tests/                      unit tests            eval/  live scenario suite and results
 demo/                       alert email sender, persona setup, copy-paste prompts, customer pitch deck (PowerPoint); rfp/ synthetic RFP and per-team answer libraries, send-rfp and send-bid-reminder
-docs/                       documentation 01–14 and architecture.drawio (6 pages)
+docs/                       documentation 01–19 and architecture.drawio (6 pages)
 ```
 
 ## Credits

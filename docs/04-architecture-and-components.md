@@ -21,7 +21,7 @@
 | Tooling | **Microsoft Graph** | Demo scripts: send the alert email, create the personas | Free |
 | Azure (optional, RFP Bid Desk) | **Azure AI Search** Basic, Entra ID only | One answer-library index per bid team; each hired instance's own identity reads only its index ([12](12-rfp-bid-desk.md)) | About USD 75/month while deployed (`ENABLE_BID_DESK=true`) |
 
-**Not used:** Cosmos DB, Azure Storage, Key Vault, API Management, an Azure Bot Service resource (the Microsoft 365 channel is built into the hosted agent endpoint), Copilot Studio, Windows 365 for Agents. Azure AI Search is deployed only with the optional RFP Bid Desk. Private networking (VNet, private endpoints, Azure Firewall) is available as an optional variant but isn't deployed. Measured costs are in [05 · Cost model](05-cost-model.md).
+**Not used:** Cosmos DB, Azure Storage, Key Vault, API Management, an Azure Bot Service resource (the Microsoft 365 channel is built into the hosted agent endpoint), Copilot Studio, Windows 365 for Agents. Azure AI Search is deployed only with the optional RFP Bid Desk. Private networking (VNet, private endpoints, Azure Firewall) is available as an optional variant but isn't deployed; see [19 · Private networking and channel security](19-private-networking-and-channel-security.md) for what changes when it is. Measured costs are in [05 · Cost model](05-cost-model.md).
 
 ## 1. Components
 
@@ -95,6 +95,66 @@ sequenceDiagram
     Mgr->>M365: Teams > Apps > Agents for your team > Create instance
     M365-->>Mgr: Instance greets the manager in Teams and appears in the org chart
 ```
+
+#### Publication request versus generated manifest
+
+**Yes: Foundry generates a Microsoft 365/Teams app manifest and ZIP package when
+publishing.** The local publish script supplies the request metadata, not the
+finished package. These artifacts are different:
+
+| Artifact | Meaning |
+|---|---|
+| Publication-request JSON | The body sent by `scripts/publish-digital-worker.ps1`: display metadata, `appVersion`, scope, permissions and optional template settings. |
+| `manifest.json` in the generated ZIP | Microsoft 365 app metadata, service-generated app/bot identities, capabilities and asset references. The package also contains `icon-color.png`, `icon-outline.png` and any supporting files. |
+| `agenticUserTemplateManifest.json` | Companion agent-user template referenced by the app manifest's `agenticUserTemplates` array. The reference has `id` and `file`; the companion uses `id`, `schemaVersion`, `agentIdentityBlueprintId` and `communicationProtocol`. These are not the PascalCase publish-request property names. |
+| Entra application manifest | Identity-registration settings, not the Microsoft 365 app package. |
+| `ToolingManifest.json` / `ToolingManifest.rfp.json` | This repository's MCP server/tool configuration, not a publication manifest. |
+| Hosted agent definition/version | Container, runtime and agent configuration, independently versioned from the published app. |
+
+`appVersion` is the published app metadata version, not the hosted runtime version.
+An older technical name and a newer friendly name can reflect different publication
+metadata; the labels alone do not prove which runtime version is serving traffic.
+
+**Offline preview (no authentication or cloud calls):**
+
+```powershell
+# Uses the current process environment, or the script's defaults; does not load azd.
+$output = Join-Path $env:TEMP "fincrime-publication-request.preview.json"
+.\scripts\publish-digital-worker.ps1 -BlueprintClientId "<blueprint-client-id>" `
+    -Preview -OutputPath $output
+Get-Content -LiteralPath $output
+```
+
+`-Preview` uses the same body builder and JSON serialization as publishing, then
+returns before token acquisition, REST calls or `azd env set`. Without `-OutputPath`,
+it emits the JSON on the success stream. `-OutputPath` is rejected without
+`-Preview`; missing directories and other file-write errors fail explicitly.
+The usual environment overrides still apply. The placeholder blueprint ID is
+unused unless `INCLUDE_AGENTIC_USER_TEMPLATE=true`; a placeholder in that mode
+remains an illustrative request, not publishable identity data. Real identifiers
+and environment-specific output must stay out of version control.
+
+**Obtaining a service-generated package is a separate operation.** Microsoft's
+[Foundry portal guide](https://learn.microsoft.com/azure/foundry/agents/how-to/publish-copilot#download-and-customize)
+documents **Publish > Teams and Microsoft Copilot > Next: Publish options >
+Download & customize > Download ZIP**. Extract it and inspect `manifest.json`
+and its referenced files; do not upload it merely to inspect it. Preserve
+service-generated IDs and agent sections when customizing metadata or icons.
+
+The [REST download operation](https://learn.microsoft.com/azure/foundry/agents/how-to/publish-copilot-virtual-network#download-and-inspect-the-app-package)
+is `POST {endpoint}/agents/{agent-name}/microsoft365/zip?api-version=v1`, using
+the publication request body. It generates and validates a package; it is **not
+a historical export of an already-published version**. Although it does not
+submit to the catalog or create a publish record, package preparation **can
+update the agent endpoint configuration** and requires agent write permission.
+Do not treat download/generation as a read-only cloud operation. The local
+preview never calls it.
+
+Schemas: [Microsoft 365 app manifest](https://learn.microsoft.com/microsoft-365/extensibility/schema/)
+and [agentic user template reference and companion schema](https://learn.microsoft.com/microsoft-365/extensibility/schema/agentic-user-template-ref).
+The [autopilot quickstart](https://learn.microsoft.com/azure/foundry/agents/how-to/agent-365)
+documents the optional template's publish-request shape. A preview is not a
+schema-validated app package or evidence of any tenant's published contents.
 
 ### 2b. Event-driven triage: alert email with nobody present
 

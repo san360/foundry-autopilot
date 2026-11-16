@@ -4,7 +4,7 @@ This page is a gap analysis of **governance for Microsoft Agent 365 autopilots b
 
 > **Status labels.** **Observed** means seen in the Zava tenant, with the date. **Documented** means stated on Microsoft Learn or in a public Microsoft sample, re-checked on **2026-11-02**. **[unverified]** means our inference. Most of the features involved are **preview**: Foundry autopilots and Agent 365 policy templates for agents with their own identity are Frontier-only previews. Not legal or compliance advice.
 
-Related: [03 · Identity and governance](03-identity-and-governance.md) · [10 · Learning guide](10-learning-guide.md) · [12 · RFP Bid Desk](12-rfp-bid-desk.md) · [13 · Identity and hiring](13-identity-analogy-and-hiring.md) · [14 · Policy templates](14-agent-policy-templates.md) · [15 · MCP behind an AI gateway](15-mcp-behind-ai-gateway.md) · [16 · Voice and meetings](16-voice-and-meetings.md)
+Related: [03 · Identity and governance](03-identity-and-governance.md) · [10 · Learning guide](10-learning-guide.md) · [12 · RFP Bid Desk](12-rfp-bid-desk.md) · [13 · Identity and hiring](13-identity-analogy-and-hiring.md) · [14 · Policy templates](14-agent-policy-templates.md) · [15 · MCP behind an AI gateway](15-mcp-behind-ai-gateway.md) · [16 · Voice and meetings](16-voice-and-meetings.md) · [19 · Private networking and channel security](19-private-networking-and-channel-security.md)
 
 ## Executive summary
 

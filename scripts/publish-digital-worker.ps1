@@ -1,14 +1,22 @@
 param(
     [Parameter(Mandatory = $true)]
-    [string]$BlueprintClientId
+    [string]$BlueprintClientId,
+    [switch]$Preview,
+    [string]$OutputPath
 )
 
 $ErrorActionPreference = "Stop"
 
+if ($PSBoundParameters.ContainsKey("OutputPath") -and (-not $Preview -or [string]::IsNullOrWhiteSpace($OutputPath))) {
+    throw "OutputPath requires -Preview and a non-empty local file path."
+}
+
 . "$PSScriptRoot/common.ps1"
 
-Write-Host "Starting publish script..."
-Write-Host "Resources were deployed to: location $env:LOCATION subscriptionId $env:SUBSCRIPTION_ID agentName $env:AGENT_NAME"
+if (-not $Preview) {
+    Write-Host "Starting publish script..."
+    Write-Host "Resources were deployed to: location $env:LOCATION subscriptionId $env:SUBSCRIPTION_ID agentName $env:AGENT_NAME"
+}
 
 $AzureAIProjectEndpoint = $env:AZURE_AI_PROJECT_ENDPOINT
 $AgentName = $env:AGENT_NAME
@@ -81,6 +89,16 @@ if ((Get-EnvOrDefault "INCLUDE_AGENTIC_USER_TEMPLATE" "false") -eq "true") {
 }
 
 $jsonBody = $body | ConvertTo-Json -Depth 10
+if ($Preview) {
+    Write-Host "Local publication-request preview only; not a generated or exported Microsoft 365 app manifest."
+    if ($OutputPath) {
+        Set-Content -LiteralPath $OutputPath -Value $jsonBody -Encoding utf8
+        Write-Host "Publication request saved to $OutputPath"
+    }
+    Write-Output $jsonBody
+    return
+}
+
 $aiAzureToken = Get-FoundryAccessToken
 
 Write-Host "Sending Microsoft 365 publish request to $agentPublishUrl..."
